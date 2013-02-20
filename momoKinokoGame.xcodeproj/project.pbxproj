@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2D2412C3E4BA196982D54 /* libPods.a */; };
 		578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DCF16D4FF6A009478BF /* UIKit.framework */; };
 		578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD116D4FF6A009478BF /* Foundation.framework */; };
 		578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD316D4FF6A009478BF /* CoreGraphics.framework */; };
@@ -16,9 +17,17 @@
 		578D0DE216D4FF6A009478BF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE116D4FF6A009478BF /* Default.png */; };
 		578D0DE416D4FF6A009478BF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE316D4FF6A009478BF /* Default@2x.png */; };
 		578D0DE616D4FF6A009478BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE516D4FF6A009478BF /* Default-568h@2x.png */; };
+		578D0DF116D5036F009478BF /* MKIntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D0DF016D5036F009478BF /* MKIntroLayer.m */; };
+		578D0DF816D50634009478BF /* mushroom1.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF316D50634009478BF /* mushroom1.png */; };
+		578D0DF916D50634009478BF /* mushroom2.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF416D50634009478BF /* mushroom2.png */; };
+		578D0DFA16D50634009478BF /* mushroom3.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF516D50634009478BF /* mushroom3.png */; };
+		578D0DFB16D50634009478BF /* mushroom4.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF616D50634009478BF /* mushroom4.png */; };
+		578D0DFC16D50634009478BF /* mushroom5.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF716D50634009478BF /* mushroom5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13C6215F8E284E6B9DF6683C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		50D2D2412C3E4BA196982D54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momoKinokoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578D0DCF16D4FF6A009478BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		578D0DD116D4FF6A009478BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,6 +41,13 @@
 		578D0DE116D4FF6A009478BF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		578D0DE316D4FF6A009478BF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		578D0DE516D4FF6A009478BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		578D0DEF16D5036F009478BF /* MKIntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKIntroLayer.h; sourceTree = "<group>"; };
+		578D0DF016D5036F009478BF /* MKIntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKIntroLayer.m; sourceTree = "<group>"; };
+		578D0DF316D50634009478BF /* mushroom1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mushroom1.png; path = Images/mushroom1.png; sourceTree = "<group>"; };
+		578D0DF416D50634009478BF /* mushroom2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mushroom2.png; path = Images/mushroom2.png; sourceTree = "<group>"; };
+		578D0DF516D50634009478BF /* mushroom3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mushroom3.png; path = Images/mushroom3.png; sourceTree = "<group>"; };
+		578D0DF616D50634009478BF /* mushroom4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mushroom4.png; path = Images/mushroom4.png; sourceTree = "<group>"; };
+		578D0DF716D50634009478BF /* mushroom5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mushroom5.png; path = Images/mushroom5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +58,7 @@
 				578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */,
 				578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */,
 				578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */,
+				05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +71,7 @@
 				578D0DD516D4FF6A009478BF /* momoKinokoGame */,
 				578D0DCE16D4FF6A009478BF /* Frameworks */,
 				578D0DCD16D4FF6A009478BF /* Products */,
+				13C6215F8E284E6B9DF6683C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +89,7 @@
 				578D0DCF16D4FF6A009478BF /* UIKit.framework */,
 				578D0DD116D4FF6A009478BF /* Foundation.framework */,
 				578D0DD316D4FF6A009478BF /* CoreGraphics.framework */,
+				50D2D2412C3E4BA196982D54 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -81,6 +100,8 @@
 				578D0DDE16D4FF6A009478BF /* MKAppDelegate.h */,
 				578D0DDF16D4FF6A009478BF /* MKAppDelegate.m */,
 				578D0DD616D4FF6A009478BF /* Supporting Files */,
+				578D0DEF16D5036F009478BF /* MKIntroLayer.h */,
+				578D0DF016D5036F009478BF /* MKIntroLayer.m */,
 			);
 			path = momoKinokoGame;
 			sourceTree = "<group>";
@@ -88,6 +109,7 @@
 		578D0DD616D4FF6A009478BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				578D0DF216D505C1009478BF /* Images */,
 				578D0DD716D4FF6A009478BF /* momoKinokoGame-Info.plist */,
 				578D0DD816D4FF6A009478BF /* InfoPlist.strings */,
 				578D0DDB16D4FF6A009478BF /* main.m */,
@@ -97,6 +119,18 @@
 				578D0DE516D4FF6A009478BF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		578D0DF216D505C1009478BF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DF316D50634009478BF /* mushroom1.png */,
+				578D0DF416D50634009478BF /* mushroom2.png */,
+				578D0DF516D50634009478BF /* mushroom3.png */,
+				578D0DF616D50634009478BF /* mushroom4.png */,
+				578D0DF716D50634009478BF /* mushroom5.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +143,7 @@
 				578D0DC816D4FF6A009478BF /* Sources */,
 				578D0DC916D4FF6A009478BF /* Frameworks */,
 				578D0DCA16D4FF6A009478BF /* Resources */,
+				6E2D7ADCFE194ECB9510405F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,10 +190,32 @@
 				578D0DE216D4FF6A009478BF /* Default.png in Resources */,
 				578D0DE416D4FF6A009478BF /* Default@2x.png in Resources */,
 				578D0DE616D4FF6A009478BF /* Default-568h@2x.png in Resources */,
+				578D0DF816D50634009478BF /* mushroom1.png in Resources */,
+				578D0DF916D50634009478BF /* mushroom2.png in Resources */,
+				578D0DFA16D50634009478BF /* mushroom3.png in Resources */,
+				578D0DFB16D50634009478BF /* mushroom4.png in Resources */,
+				578D0DFC16D50634009478BF /* mushroom5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E2D7ADCFE194ECB9510405F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		578D0DC816D4FF6A009478BF /* Sources */ = {
@@ -167,6 +224,7 @@
 			files = (
 				578D0DDC16D4FF6A009478BF /* main.m in Sources */,
 				578D0DE016D4FF6A009478BF /* MKAppDelegate.m in Sources */,
+				578D0DF116D5036F009478BF /* MKIntroLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,22 +302,28 @@
 		};
 		578D0DEA16D4FF6A009478BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13C6215F8E284E6B9DF6683C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "momoKinokoGame/momoKinokoGame-Prefix.pch";
 				INFOPLIST_FILE = "momoKinokoGame/momoKinokoGame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		578D0DEB16D4FF6A009478BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13C6215F8E284E6B9DF6683C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "momoKinokoGame/momoKinokoGame-Prefix.pch";
 				INFOPLIST_FILE = "momoKinokoGame/momoKinokoGame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -283,6 +347,7 @@
 				578D0DEB16D4FF6A009478BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <cocos2d.h>
 
-@interface MKAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MKAppDelegate : UIResponder <UIApplicationDelegate, CCDirectorDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
