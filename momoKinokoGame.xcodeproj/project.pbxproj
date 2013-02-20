@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DCF16D4FF6A009478BF /* UIKit.framework */; };
+		578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD116D4FF6A009478BF /* Foundation.framework */; };
+		578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD316D4FF6A009478BF /* CoreGraphics.framework */; };
+		578D0DDA16D4FF6A009478BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DD816D4FF6A009478BF /* InfoPlist.strings */; };
+		578D0DDC16D4FF6A009478BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D0DDB16D4FF6A009478BF /* main.m */; };
+		578D0DE016D4FF6A009478BF /* MKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D0DDF16D4FF6A009478BF /* MKAppDelegate.m */; };
+		578D0DE216D4FF6A009478BF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE116D4FF6A009478BF /* Default.png */; };
+		578D0DE416D4FF6A009478BF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE316D4FF6A009478BF /* Default@2x.png */; };
+		578D0DE616D4FF6A009478BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DE516D4FF6A009478BF /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momoKinokoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		578D0DCF16D4FF6A009478BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		578D0DD116D4FF6A009478BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		578D0DD316D4FF6A009478BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		578D0DD716D4FF6A009478BF /* momoKinokoGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "momoKinokoGame-Info.plist"; sourceTree = "<group>"; };
+		578D0DD916D4FF6A009478BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		578D0DDB16D4FF6A009478BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		578D0DDD16D4FF6A009478BF /* momoKinokoGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "momoKinokoGame-Prefix.pch"; sourceTree = "<group>"; };
+		578D0DDE16D4FF6A009478BF /* MKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKAppDelegate.h; sourceTree = "<group>"; };
+		578D0DDF16D4FF6A009478BF /* MKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKAppDelegate.m; sourceTree = "<group>"; };
+		578D0DE116D4FF6A009478BF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		578D0DE316D4FF6A009478BF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		578D0DE516D4FF6A009478BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		578D0DC916D4FF6A009478BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */,
+				578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */,
+				578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		578D0DC316D4FF6A009478BF = {
+			isa = PBXGroup;
+			children = (
+				578D0DD516D4FF6A009478BF /* momoKinokoGame */,
+				578D0DCE16D4FF6A009478BF /* Frameworks */,
+				578D0DCD16D4FF6A009478BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		578D0DCD16D4FF6A009478BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		578D0DCE16D4FF6A009478BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DCF16D4FF6A009478BF /* UIKit.framework */,
+				578D0DD116D4FF6A009478BF /* Foundation.framework */,
+				578D0DD316D4FF6A009478BF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		578D0DD516D4FF6A009478BF /* momoKinokoGame */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DDE16D4FF6A009478BF /* MKAppDelegate.h */,
+				578D0DDF16D4FF6A009478BF /* MKAppDelegate.m */,
+				578D0DD616D4FF6A009478BF /* Supporting Files */,
+			);
+			path = momoKinokoGame;
+			sourceTree = "<group>";
+		};
+		578D0DD616D4FF6A009478BF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DD716D4FF6A009478BF /* momoKinokoGame-Info.plist */,
+				578D0DD816D4FF6A009478BF /* InfoPlist.strings */,
+				578D0DDB16D4FF6A009478BF /* main.m */,
+				578D0DDD16D4FF6A009478BF /* momoKinokoGame-Prefix.pch */,
+				578D0DE116D4FF6A009478BF /* Default.png */,
+				578D0DE316D4FF6A009478BF /* Default@2x.png */,
+				578D0DE516D4FF6A009478BF /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		578D0DCB16D4FF6A009478BF /* momoKinokoGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 578D0DE916D4FF6A009478BF /* Build configuration list for PBXNativeTarget "momoKinokoGame" */;
+			buildPhases = (
+				578D0DC816D4FF6A009478BF /* Sources */,
+				578D0DC916D4FF6A009478BF /* Frameworks */,
+				578D0DCA16D4FF6A009478BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = momoKinokoGame;
+			productName = momoKinokoGame;
+			productReference = 578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		578D0DC416D4FF6A009478BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MK;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = slightair;
+			};
+			buildConfigurationList = 578D0DC716D4FF6A009478BF /* Build configuration list for PBXProject "momoKinokoGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 578D0DC316D4FF6A009478BF;
+			productRefGroup = 578D0DCD16D4FF6A009478BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				578D0DCB16D4FF6A009478BF /* momoKinokoGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		578D0DCA16D4FF6A009478BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578D0DDA16D4FF6A009478BF /* InfoPlist.strings in Resources */,
+				578D0DE216D4FF6A009478BF /* Default.png in Resources */,
+				578D0DE416D4FF6A009478BF /* Default@2x.png in Resources */,
+				578D0DE616D4FF6A009478BF /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		578D0DC816D4FF6A009478BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578D0DDC16D4FF6A009478BF /* main.m in Sources */,
+				578D0DE016D4FF6A009478BF /* MKAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		578D0DD816D4FF6A009478BF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				578D0DD916D4FF6A009478BF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		578D0DE716D4FF6A009478BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		578D0DE816D4FF6A009478BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		578D0DEA16D4FF6A009478BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "momoKinokoGame/momoKinokoGame-Prefix.pch";
+				INFOPLIST_FILE = "momoKinokoGame/momoKinokoGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		578D0DEB16D4FF6A009478BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "momoKinokoGame/momoKinokoGame-Prefix.pch";
+				INFOPLIST_FILE = "momoKinokoGame/momoKinokoGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		578D0DC716D4FF6A009478BF /* Build configuration list for PBXProject "momoKinokoGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578D0DE716D4FF6A009478BF /* Debug */,
+				578D0DE816D4FF6A009478BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		578D0DE916D4FF6A009478BF /* Build configuration list for PBXNativeTarget "momoKinokoGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578D0DEA16D4FF6A009478BF /* Debug */,
+				578D0DEB16D4FF6A009478BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 578D0DC416D4FF6A009478BF /* Project object */;
+}
