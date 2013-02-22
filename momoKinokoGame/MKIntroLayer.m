@@ -8,6 +8,12 @@
 
 #import "MKIntroLayer.h"
 
+#define kMushroomSize 24
+#define kNumberOfMushroomKind 5
+#define kHorizontalMargin 24
+#define kItemRotationAngle 360
+#define kItemFallingDuration 1.0
+
 @implementation MKIntroLayer
 
 + (CCScene *)scene
@@ -24,32 +30,32 @@
 {
     [super onEnter];
 
+    [self schedule:@selector(addMushroom) interval:0.01];
+}
+
+- (void)addMushroom
+{
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
 
-    NSInteger numMushrooms = 100;
-    NSInteger adjustX = 12;
-    CGFloat delayMax = 10.0;
-    NSInteger delaySteps = 64;
+    NSString *fileName = [NSString stringWithFormat:@"mushroom%d.png", arc4random() % kNumberOfMushroomKind + 1];
+    NSInteger emergedAreaWidth = windowSize.width - kHorizontalMargin * 2;
+    CGFloat positionX = arc4random() % emergedAreaWidth + kHorizontalMargin;
 
-    for (int i=0; i<numMushrooms; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"mushroom%d.png", arc4random() % 5 + 1];
-        CGFloat width = windowSize.width / numMushrooms * i + adjustX;
-        CCSprite *mushroom = [CCSprite spriteWithFile:fileName];
-        mushroom.position = ccp(width, windowSize.height + 12);
+    CCSprite *mushroom = [CCSprite spriteWithFile:fileName];
+    mushroom.position = ccp(positionX, windowSize.height + kMushroomSize / 2);
 
-        id fallAction = [CCSpawn actions:
-                         [CCMoveTo actionWithDuration:1.0 position:ccp(width, 12)],
-                         [CCRotateBy actionWithDuration:1.0 angle:360],
-                         nil];
-        id action = [CCSequence actions:
-                     [CCDelayTime actionWithDuration:(arc4random() % delaySteps) * (delayMax / delaySteps)],
-                     fallAction,
+    id fallAction = [CCSpawn actions:
+                     [CCMoveTo actionWithDuration:kItemFallingDuration position:ccp(positionX, -kMushroomSize / 2)],
+                     [CCRotateBy actionWithDuration:kItemFallingDuration angle:kItemRotationAngle],
                      nil];
+    id action = [CCSequence actions:
+                 fallAction,
+                 [CCCallFuncND actionWithTarget:mushroom selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
+                 nil];
 
-        [mushroom runAction:action];
+    [mushroom runAction:action];
 
-        [self addChild:mushroom];
-    }
+    [self addChild:mushroom];
 }
 
 @end
