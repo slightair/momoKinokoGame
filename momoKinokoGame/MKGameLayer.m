@@ -26,7 +26,7 @@
     return scene;
 }
 
-- (void)onEnter
+- (void)onEnterTransitionDidFinish
 {
     [super onEnter];
 
