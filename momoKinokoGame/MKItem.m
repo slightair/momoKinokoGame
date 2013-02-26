@@ -9,15 +9,18 @@
 #import "MKItem.h"
 
 #define kItemSize 24
-#define kItemRotationAngle 360
-#define kItemFallingSpeed 320
 #define kEmergedAreaHorizontalMarginRate 0.1
+#define kItemFallingSpeed 320
+#define kItemFlipSpeed 320
+#define kFlipDistanceThreshold 24
 
 @interface MKItem ()
 
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
 
 @property (nonatomic, assign) MKItemID itemID;
+@property (nonatomic, assign) CGPoint prevLocation;
+@property (nonatomic, assign) BOOL isFlipped;
 
 @end
 
@@ -35,6 +38,7 @@
     NSInteger emergedAreaWidth = windowSize.width - horizontalMargin * 2;
     CGFloat positionX = arc4random() % emergedAreaWidth + horizontalMargin;
     mushroom.position = ccp(positionX, windowSize.height + kItemSize / 2);
+    mushroom.isFlipped = NO;
 
     return mushroom;
 }
@@ -78,14 +82,22 @@
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+- (void)onExit
+{
+    [super onExit];
+
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+}
+
 - (void)fall
 {
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
 
     ccTime duration = windowSize.height / kItemFallingSpeed;
+    CGFloat rotateAngle = 360 + arc4random() % 180;
     id fallAction = [CCSpawn actions:
                      [CCMoveBy actionWithDuration:duration position:ccp(0, - windowSize.height - kItemSize)],
-                     [CCRotateBy actionWithDuration:duration angle:kItemRotationAngle],
+                     [CCRotateBy actionWithDuration:duration angle:rotateAngle],
                      nil];
     id action = [CCSequence actions:
                  fallAction,
@@ -107,6 +119,7 @@
 
     [self stopAllActions];
     self.position = location;
+    self.prevLocation = location;
 
     return YES;
 }
@@ -116,16 +129,61 @@
     CGPoint location = [touch locationInView:touch.view];
     location = [[CCDirector sharedDirector] convertToGL:location];
 
+    if (!CGPointEqualToPoint(self.prevLocation, CGPointZero)) {
+        CGFloat distance = sqrt(pow(self.prevLocation.x - location.x, 2) + pow(self.prevLocation.y - location.y, 2));
+        if (distance > kFlipDistanceThreshold) {
+            self.isFlipped = YES;
+
+            CGSize windowSize = [[CCDirector sharedDirector] winSize];
+            ccTime duration = windowSize.width / kItemFlipSpeed;
+            CGFloat rotateAngle = 360;
+
+            id flipAction = nil;
+            if (location.x > self.prevLocation.x) {
+                flipAction = [CCSpawn actions:
+                              [CCMoveTo actionWithDuration:duration position:ccp(windowSize.width + kItemSize, self.position.y)],
+                              [CCRotateBy actionWithDuration:duration angle:rotateAngle],
+                              nil];
+            }
+            else {
+                flipAction = [CCSpawn actions:
+                              [CCMoveTo actionWithDuration:duration position:ccp(0 - kItemSize, self.position.y)],
+                              [CCRotateBy actionWithDuration:duration angle:rotateAngle],
+                              nil];
+            }
+
+            id action = [CCSequence actions:
+                         flipAction,
+                         [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
+                         nil];
+
+            [self runAction:action];
+        }
+        else {
+            self.prevLocation = location;
+        }
+    }
+
     self.position = location;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [self removeFromParentAndCleanup:YES];
+    self.prevLocation = CGPointZero;
+
+    if (!self.isFlipped) {
+        id action = [CCSequence actions:
+                     [CCFadeOut actionWithDuration:0.5],
+                     [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
+                     nil];
+
+        [self runAction:action];
+    }
 }
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    self.prevLocation = CGPointZero;
     [self removeFromParentAndCleanup:YES];
 }
 
