@@ -7,12 +7,7 @@
 //
 
 #import "MKGameLayer.h"
-
-#define kMushroomSize 24
-#define kNumberOfMushroomKind 5
-#define kHorizontalMargin 24
-#define kItemRotationAngle 360
-#define kItemFallingDuration 1.0
+#import "MKItem.h"
 
 @implementation MKGameLayer
 
@@ -35,27 +30,10 @@
 
 - (void)addMushroom
 {
-    CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
-    NSString *fileName = [NSString stringWithFormat:@"mushroom%d.png", arc4random() % kNumberOfMushroomKind + 1];
-    NSInteger emergedAreaWidth = windowSize.width - kHorizontalMargin * 2;
-    CGFloat positionX = arc4random() % emergedAreaWidth + kHorizontalMargin;
-
-    CCSprite *mushroom = [CCSprite spriteWithFile:fileName];
-    mushroom.position = ccp(positionX, windowSize.height + kMushroomSize / 2);
-
-    id fallAction = [CCSpawn actions:
-                     [CCMoveTo actionWithDuration:kItemFallingDuration position:ccp(positionX, -kMushroomSize / 2)],
-                     [CCRotateBy actionWithDuration:kItemFallingDuration angle:kItemRotationAngle],
-                     nil];
-    id action = [CCSequence actions:
-                 fallAction,
-                 [CCCallFuncND actionWithTarget:mushroom selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
-                 nil];
-
-    [mushroom runAction:action];
+    MKItem *mushroom = [MKItem mushroom];
 
     [self addChild:mushroom];
+    [mushroom fall];
 }
 
 @end
