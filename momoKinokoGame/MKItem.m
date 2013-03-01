@@ -13,13 +13,16 @@
 #define kItemFallingSpeed 320
 #define kItemFlipSpeed 320
 #define kFlipDistanceThreshold 24
+#define kFadeOutDuration 0.5
 
 @interface MKItem ()
 
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
+- (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime;
 
 @property (nonatomic, assign) MKItemID itemID;
 @property (nonatomic, assign) CGPoint prevLocation;
+@property (nonatomic, assign) CFAbsoluteTime prevTime;
 @property (nonatomic, assign) BOOL isFlipped;
 
 @end
@@ -107,12 +110,40 @@
     [self runAction:action];
 }
 
+- (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime
+{
+    CGFloat movedX = to.x - from.x;
+    CGFloat movedY = to.y - from.y;
+
+    CGSize windowSize = [[CCDirector sharedDirector] winSize];
+    CGFloat slope = movedY / movedX;
+
+    CGFloat destX = movedX > 0 ? windowSize.width : 0;
+    CGFloat destY = (destX - from.x) * slope + from.y;
+    ccTime duration = (destX - to.x) / movedX * deltaTime;
+    CGFloat rotateAngle = 360;
+
+    id flipAction = [CCSpawn actions:
+                     [CCMoveTo actionWithDuration:duration position:ccp(destX, destY)],
+                     [CCRotateBy actionWithDuration:duration angle:rotateAngle],
+                     nil];
+    id action = [CCSequence actions:
+                 flipAction,
+                 [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
+                 nil];
+
+    [self runAction:action];
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint location = [touch locationInView:touch.view];
     location = [[CCDirector sharedDirector] convertToGL:location];
 
-    CGRect spriteRect = CGRectOffset(self.textureRect, self.position.x - kItemSize / 2, self.position.y - kItemSize / 2);
+    CGRect spriteRect = CGRectMake(self.position.x - kItemSize,
+                                   self.position.y - kItemSize,
+                                   self.textureRect.size.width * 2,
+                                   self.textureRect.size.height * 2);
     if (!CGRectContainsPoint(spriteRect, location)) {
         return NO;
     }
@@ -120,44 +151,31 @@
     [self stopAllActions];
     self.position = location;
     self.prevLocation = location;
+    self.prevTime = CFAbsoluteTimeGetCurrent();
 
     return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if (self.isFlipped) {
+        return;
+    }
+
+    CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+    CFAbsoluteTime deltaTime = now - self.prevTime;
+    self.prevTime = now;
+
     CGPoint location = [touch locationInView:touch.view];
     location = [[CCDirector sharedDirector] convertToGL:location];
 
     if (!CGPointEqualToPoint(self.prevLocation, CGPointZero)) {
-        CGFloat distance = sqrt(pow(self.prevLocation.x - location.x, 2) + pow(self.prevLocation.y - location.y, 2));
+        CGFloat movedX = location.x - self.prevLocation.x;
+        CGFloat movedY = location.y - self.prevLocation.y;
+        CGFloat distance = sqrt(pow(movedX, 2) + pow(movedY, 2));
         if (distance > kFlipDistanceThreshold) {
+            [self flipFrom:self.prevLocation to:location deltaTime:deltaTime];
             self.isFlipped = YES;
-
-            CGSize windowSize = [[CCDirector sharedDirector] winSize];
-            ccTime duration = windowSize.width / kItemFlipSpeed;
-            CGFloat rotateAngle = 360;
-
-            id flipAction = nil;
-            if (location.x > self.prevLocation.x) {
-                flipAction = [CCSpawn actions:
-                              [CCMoveTo actionWithDuration:duration position:ccp(windowSize.width + kItemSize, self.position.y)],
-                              [CCRotateBy actionWithDuration:duration angle:rotateAngle],
-                              nil];
-            }
-            else {
-                flipAction = [CCSpawn actions:
-                              [CCMoveTo actionWithDuration:duration position:ccp(0 - kItemSize, self.position.y)],
-                              [CCRotateBy actionWithDuration:duration angle:rotateAngle],
-                              nil];
-            }
-
-            id action = [CCSequence actions:
-                         flipAction,
-                         [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
-                         nil];
-
-            [self runAction:action];
         }
         else {
             self.prevLocation = location;
@@ -173,7 +191,7 @@
 
     if (!self.isFlipped) {
         id action = [CCSequence actions:
-                     [CCFadeOut actionWithDuration:0.5],
+                     [CCFadeOut actionWithDuration:kFadeOutDuration],
                      [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
                      nil];
 
