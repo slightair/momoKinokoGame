@@ -10,9 +10,13 @@
 #import "MKGameInfoLayer.h"
 #import "MKItem.h"
 
+#define kAddItemInterval 0.1
+#define kEmergedAreaHorizontalMarginRate 0.1
 #define kGameInfoLayerZOrder 100
 
 @interface MKGameLayer ()
+
+- (void)addItem;
 
 @property (nonatomic, strong) MKGameInfoLayer *infoLayer;
 
@@ -37,15 +41,22 @@
     self.infoLayer = [MKGameInfoLayer node];
     [self addChild:self.infoLayer z:kGameInfoLayerZOrder];
 
-    [self schedule:@selector(addMushroom) interval:0.01];
+    [self schedule:@selector(addItem) interval:kAddItemInterval];
 }
 
-- (void)addMushroom
+- (void)addItem
 {
-    MKItem *mushroom = [MKItem mushroom];
+    CGSize windowSize = [[CCDirector sharedDirector] winSize];
 
-    [self addChild:mushroom];
-    [mushroom fall];
+    MKItem *item = (arc4random() % 100) < 50 ? [MKItem mushroom] : [MKItem peach];
+
+    CGFloat horizontalMargin = windowSize.width * kEmergedAreaHorizontalMarginRate;
+    NSInteger emergedAreaWidth = windowSize.width - horizontalMargin * 2;
+    CGFloat positionX = arc4random() % emergedAreaWidth + horizontalMargin;
+    item.position = ccp(positionX, windowSize.height + item.textureRect.size.height / 2);
+
+    [self addChild:item];
+    [item fall];
 }
 
 @end

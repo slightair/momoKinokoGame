@@ -8,8 +8,6 @@
 
 #import "MKItem.h"
 
-#define kItemSize 24
-#define kEmergedAreaHorizontalMarginRate 0.1
 #define kItemFallingSpeed 320
 #define kItemFlipSpeed 320
 #define kFlipDistanceThreshold 12
@@ -17,6 +15,7 @@
 
 @interface MKItem ()
 
++ (id)itemWithID:(MKItemID)itemID;
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
 - (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime;
 
@@ -29,21 +28,26 @@
 
 @implementation MKItem
 
++ (id)itemWithID:(MKItemID)itemID
+{
+    NSString *imageFileName = [self imageFileNameOfItemID:itemID];
+    MKItem *item = [MKItem spriteWithFile:imageFileName];
+    item.itemID = itemID;
+    item.isFlipped = NO;
+
+    return item;
+}
+
 + (id)mushroom
 {
     MKItemID itemID = MKItemIDMushroomAkaKinoko + arc4random() % kNumberOfMushroom;
-    NSString *imageFileName = [self imageFileNameOfItemID:itemID];
-    MKItem *mushroom = [MKItem spriteWithFile:imageFileName];
-    mushroom.itemID = itemID;
+    return [self itemWithID:itemID];
+}
 
-    CGSize windowSize = [[CCDirector sharedDirector] winSize];
-    CGFloat horizontalMargin = windowSize.width * kEmergedAreaHorizontalMarginRate;
-    NSInteger emergedAreaWidth = windowSize.width - horizontalMargin * 2;
-    CGFloat positionX = arc4random() % emergedAreaWidth + horizontalMargin;
-    mushroom.position = ccp(positionX, windowSize.height + kItemSize / 2);
-    mushroom.isFlipped = NO;
-
-    return mushroom;
++ (id)peach
+{
+    MKItemID itemID = MKItemIDPeachHakutou + arc4random() % kNumberOfPeach;
+    return [self itemWithID:itemID];
 }
 
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID
@@ -69,6 +73,14 @@
 
         case MKItemIDMushroomKasaKinoko:
             fileName = @"mushroom5.png";
+            break;
+
+        case MKItemIDPeachHakutou:
+            fileName = @"peach1.png";
+            break;
+
+        case MKItemIDPeachOutou:
+            fileName = @"peach2.png";
             break;
 
         default:
@@ -99,7 +111,7 @@
     ccTime duration = windowSize.height / kItemFallingSpeed;
     CGFloat rotateAngle = 360 + arc4random() % 180;
     id fallAction = [CCSpawn actions:
-                     [CCMoveBy actionWithDuration:duration position:ccp(0, - windowSize.height - kItemSize)],
+                     [CCMoveBy actionWithDuration:duration position:ccp(0, - windowSize.height - self.textureRect.size.height)],
                      [CCRotateBy actionWithDuration:duration angle:rotateAngle],
                      nil];
     id action = [CCSequence actions:
@@ -139,9 +151,10 @@
 {
     CGPoint location = [touch locationInView:touch.view];
     location = [[CCDirector sharedDirector] convertToGL:location];
+    CGSize itemSize = self.textureRect.size;
 
-    CGRect spriteRect = CGRectMake(self.position.x - kItemSize,
-                                   self.position.y - kItemSize,
+    CGRect spriteRect = CGRectMake(self.position.x - itemSize.width,
+                                   self.position.y - itemSize.height,
                                    self.textureRect.size.width * 2,
                                    self.textureRect.size.height * 2);
     if (!CGRectContainsPoint(spriteRect, location)) {

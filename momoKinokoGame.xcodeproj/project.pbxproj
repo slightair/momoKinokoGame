@@ -27,6 +27,8 @@
 		57C167B216D83A7100AF626F /* MKGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C167B116D83A7100AF626F /* MKGameLayer.m */; };
 		57CCB35E16E1E33D00253B6A /* MKGameInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */; };
 		57CCB36116E1EB6100253B6A /* MKGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CCB36016E1EB6100253B6A /* MKGameEngine.m */; };
+		57CCB36516E1F53100253B6A /* peach1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CCB36316E1F53100253B6A /* peach1.png */; };
+		57CCB36616E1F53100253B6A /* peach2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CCB36416E1F53100253B6A /* peach2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameInfoLayer.m; sourceTree = "<group>"; };
 		57CCB35F16E1EB6100253B6A /* MKGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameEngine.h; sourceTree = "<group>"; };
 		57CCB36016E1EB6100253B6A /* MKGameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameEngine.m; sourceTree = "<group>"; };
+		57CCB36316E1F53100253B6A /* peach1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = peach1.png; path = Images/peach1.png; sourceTree = "<group>"; };
+		57CCB36416E1F53100253B6A /* peach2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = peach2.png; path = Images/peach2.png; sourceTree = "<group>"; };
 		57D4E4D616E0E6DA00D112F3 /* MKTestFlightToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTestFlightToken.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +148,8 @@
 				578D0DF516D50634009478BF /* mushroom3.png */,
 				578D0DF616D50634009478BF /* mushroom4.png */,
 				578D0DF716D50634009478BF /* mushroom5.png */,
+				57CCB36316E1F53100253B6A /* peach1.png */,
+				57CCB36416E1F53100253B6A /* peach2.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -225,6 +231,8 @@
 				578D0DFA16D50634009478BF /* mushroom3.png in Resources */,
 				578D0DFB16D50634009478BF /* mushroom4.png in Resources */,
 				578D0DFC16D50634009478BF /* mushroom5.png in Resources */,
+				57CCB36516E1F53100253B6A /* peach1.png in Resources */,
+				57CCB36616E1F53100253B6A /* peach2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
