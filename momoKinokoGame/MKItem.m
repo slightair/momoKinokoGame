@@ -13,13 +13,22 @@
 #define kFlipDistanceThreshold 12
 #define kFadeOutDuration 0.5
 
+// Notifications
+NSString *const MKItemNotificationReachedItem = @"MKItemNotificationReachedItem";
+
+// Notification User Info Keys
+NSString *const MKItemReachedItemKindUserInfoKey = @"MKItemReachedItemKind";
+NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
+
 @interface MKItem ()
 
 + (id)itemWithID:(MKItemID)itemID;
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
 - (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime;
+- (void)notifyReachedItem:(NSValue *)destination;
 
 @property (nonatomic, assign) MKItemID itemID;
+@property (nonatomic, assign) MKItemKind itemKind;
 @property (nonatomic, assign) CGPoint prevLocation;
 @property (nonatomic, assign) CFAbsoluteTime prevTime;
 @property (nonatomic, assign) BOOL isFlipped;
@@ -41,13 +50,19 @@
 + (id)mushroom
 {
     MKItemID itemID = MKItemIDMushroomAkaKinoko + arc4random() % kNumberOfMushroom;
-    return [self itemWithID:itemID];
+    MKItem *item = [self itemWithID:itemID];
+    item.itemKind = MKItemKindMushroom;
+
+    return item;
 }
 
 + (id)peach
 {
     MKItemID itemID = MKItemIDPeachHakutou + arc4random() % kNumberOfPeach;
-    return [self itemWithID:itemID];
+    MKItem *item = [self itemWithID:itemID];
+    item.itemKind = MKItemKindPeach;
+
+    return item;
 }
 
 + (NSString *)imageFileNameOfItemID:(MKItemID)itemID
@@ -145,7 +160,7 @@
         destY = movedY > 0 ? windowSize.height : 0;
     }
 
-    CGFloat moved = sqrt(pow(movedX, 2) + pow(movedY, 2));
+        CGFloat moved = sqrt(pow(movedX, 2) + pow(movedY, 2));
     CGFloat move = sqrt(pow(destX - to.x, 2) + pow(destY - to.y, 2));
     ccTime duration = move / moved * deltaTime;
 
@@ -157,10 +172,19 @@
                      nil];
     id action = [CCSequence actions:
                  flipAction,
+                 [CCCallFuncO actionWithTarget:self selector:@selector(notifyReachedItem:) object:[NSValue valueWithCGPoint:ccp(destX, destY)]],
                  [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
                  nil];
 
     [self runAction:action];
+}
+
+- (void)notifyReachedItem:(NSValue *)destination
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKItemNotificationReachedItem
+                                                        object:self
+                                                      userInfo:@{MKItemReachedItemKindUserInfoKey : @(self.itemKind),
+                                                                 MKItemReachedLocationUserInfoKey : destination}];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event

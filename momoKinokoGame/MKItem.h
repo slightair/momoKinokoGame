@@ -12,6 +12,13 @@
 #define kNumberOfMushroom 5
 #define kNumberOfPeach 2
 
+// Notifications
+extern NSString *const MKItemNotificationReachedItem;
+
+// Notification User Info Keys
+extern NSString *const MKItemReachedItemKindUserInfoKey;
+extern NSString *const MKItemReachedLocationUserInfoKey;
+
 typedef enum {
     MKItemIDMushroomAkaKinoko   = 1000,
     MKItemIDMushroomHashiraDake,
@@ -23,6 +30,12 @@ typedef enum {
     MKItemIDUnknown = -1,
 } MKItemID;
 
+typedef enum {
+    MKItemKindMushroom = 100,
+    MKItemKindPeach,
+    MKItemKindUnknown = -1
+} MKItemKind;
+
 @interface MKItem : CCSprite <CCTouchOneByOneDelegate>
 
 + (id)mushroom;
@@ -30,5 +43,6 @@ typedef enum {
 - (void)fall;
 
 @property (nonatomic, assign, readonly) MKItemID itemID;
+@property (nonatomic, assign, readonly) MKItemKind itemKind;
 
 @end

@@ -10,6 +10,10 @@
 #import <cocos2d.h>
 #import <BlocksKit.h>
 #import "MKGameLayer.h"
+#import "MKItem.h"
+
+#define kHarvestItemSuccessScore 100
+#define kHarvestItemFailureScore -200
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -18,6 +22,8 @@ NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotification
 NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore";
 
 @interface MKGameEngine ()
+
+- (void)itemDidReachHarvestArea:(NSNotification *)notification;
 
 @property (nonatomic, assign) NSInteger score;
 
@@ -39,9 +45,17 @@ NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore
 {
     self = [super init];
     if (self) {
-
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(itemDidReachHarvestArea:)
+                                                     name:MKItemNotificationReachedItem
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)startNewGame
@@ -50,6 +64,24 @@ NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore
 
     id transition = [CCTransitionFade transitionWithDuration:1.0 scene:[MKGameLayer scene]];
     [[CCDirector sharedDirector] replaceScene:transition];
+}
+
+- (void)itemDidReachHarvestArea:(NSNotification *)notification
+{
+    MKItemKind itemKind = [notification.userInfo[MKItemReachedItemKindUserInfoKey] integerValue];
+    CGPoint location = [notification.userInfo[MKItemReachedLocationUserInfoKey] CGPointValue];
+
+    CGSize windowSize = [[CCDirector sharedDirector] winSize];
+    if (location.x != 0 && location.x != windowSize.width) {
+        return;
+    }
+
+    if (location.x == 0) {
+        self.score += itemKind == MKItemKindPeach ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
+    }
+    else if(location.x == windowSize.width) {
+        self.score += itemKind == MKItemKindMushroom ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
+    }
 }
 
 - (void)setScore:(NSInteger)score

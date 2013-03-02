@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 // Notifications
-extern NSString *const MKGameEngineNotificationUpdateScore;// @"MKGameEngineNotificationUpdateScore"
+extern NSString *const MKGameEngineNotificationUpdateScore;
 
 // Notification User Info Keys
-extern NSString *const MKGameEngineUpdatedScoreUserInfoKey;// @"MKGameEngineUpdatedScore"
+extern NSString *const MKGameEngineUpdatedScoreUserInfoKey;
 
 @interface MKGameEngine : NSObject
 
