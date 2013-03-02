@@ -9,6 +9,11 @@
 #import "MKAppDelegate.h"
 #import "MKIntroLayer.h"
 
+#ifdef TESTFLIGHT
+#import <TestFlight.h>
+#import "MKTestFlightToken.h"
+#endif
+
 @interface MKAppDelegate ()
 
 @property (nonatomic, weak) CCDirectorIOS *director;
@@ -20,6 +25,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+#ifdef TESTFLIGHT
+    [TestFlight takeOff:kTestFlightToken];
+#endif
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     CCGLView *glView = [CCGLView viewWithFrame:self.window.bounds
