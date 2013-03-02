@@ -128,11 +128,27 @@
     CGFloat movedY = to.y - from.y;
 
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
-    CGFloat slope = movedY / movedX;
 
-    CGFloat destX = movedX > 0 ? windowSize.width : 0;
-    CGFloat destY = (destX - from.x) * slope + from.y;
-    ccTime duration = (destX - to.x) / movedX * deltaTime;
+    CGFloat destX = 0;
+    CGFloat destY = 0;
+    if (movedX != 0) {
+        destX = movedX > 0 ? windowSize.width : 0;
+        destY = (destX - from.x) * (movedY / movedX) + from.y;
+
+        if (destY < 0 || windowSize.height < destY) {
+            destY = movedY > 0 ? windowSize.height : 0;
+            destX = (destY - from.y) * (movedX / movedY) + from.x;
+        }
+    }
+    else {
+        destX = to.x;
+        destY = movedY > 0 ? windowSize.height : 0;
+    }
+
+    CGFloat moved = sqrt(pow(movedX, 2) + pow(movedY, 2));
+    CGFloat move = sqrt(pow(destX - to.x, 2) + pow(destY - to.y, 2));
+    ccTime duration = move / moved * deltaTime;
+
     CGFloat rotateAngle = 360;
 
     id flipAction = [CCSpawn actions:
