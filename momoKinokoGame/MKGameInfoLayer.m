@@ -10,8 +10,10 @@
 #import "MKGameEngine.h"
 
 #define kScoreLabelFontSize 18
-#define kScoreLabelOriginX 24
-#define kScoreLabelOriginY 24
+#define kScoreLabelOriginXiPhone 10
+#define kScoreLabelOriginYiPhone 10
+#define kScoreLabelOriginXiPad 24
+#define kScoreLabelOriginYiPad 24
 
 @interface MKGameInfoLayer ()
 
@@ -38,7 +40,11 @@
 
     self.scoreLabel = [CCLabelTTF labelWithString:@"" fontName:@"Chalkboard SE" fontSize:kScoreLabelFontSize];
     self.scoreLabel.anchorPoint = ccp(0.0, 0.0);
-    self.scoreLabel.position = ccp(kScoreLabelOriginX, windowSize.height - kScoreLabelOriginY - kScoreLabelFontSize);
+
+    CGFloat scoreLabelOriginX = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? kScoreLabelOriginXiPad : kScoreLabelOriginXiPhone;
+    CGFloat scoreLabelOriginY = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? kScoreLabelOriginYiPad : kScoreLabelOriginYiPhone;
+
+    self.scoreLabel.position = ccp(scoreLabelOriginX, windowSize.height - scoreLabelOriginY - kScoreLabelFontSize);
     [self updateScore:0];
 
     [self addChild:self.scoreLabel];
