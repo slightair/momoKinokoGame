@@ -7,7 +7,16 @@
 //
 
 #import "MKGameLayer.h"
+#import "MKGameInfoLayer.h"
 #import "MKItem.h"
+
+#define kGameInfoLayerZOrder 100
+
+@interface MKGameLayer ()
+
+@property (nonatomic, strong) MKGameInfoLayer *infoLayer;
+
+@end
 
 @implementation MKGameLayer
 
@@ -23,7 +32,10 @@
 
 - (void)onEnterTransitionDidFinish
 {
-    [super onEnter];
+    [super onEnterTransitionDidFinish];
+
+    self.infoLayer = [MKGameInfoLayer node];
+    [self addChild:self.infoLayer z:kGameInfoLayerZOrder];
 
     [self schedule:@selector(addMushroom) interval:0.01];
 }

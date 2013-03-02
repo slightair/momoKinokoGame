@@ -7,7 +7,7 @@
 //
 
 #import "MKIntroLayer.h"
-#import "MKGameLayer.h"
+#import "MKGameEngine.h"
 
 @implementation MKIntroLayer
 
@@ -31,8 +31,7 @@
 
     [self addChild:background];
 
-    id transition = [CCTransitionFade transitionWithDuration:1.0 scene:[MKGameLayer scene]];
-    [[CCDirector sharedDirector] replaceScene:transition];
+    [[MKGameEngine sharedEngine] startNewGame];
 }
 
 @end

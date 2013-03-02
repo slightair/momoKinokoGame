@@ -25,6 +25,8 @@
 		578D0DFC16D50634009478BF /* mushroom5.png in Resources */ = {isa = PBXBuildFile; fileRef = 578D0DF716D50634009478BF /* mushroom5.png */; };
 		578D0DFF16D9F1FD009478BF /* MKItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D0DFE16D9F1FD009478BF /* MKItem.m */; };
 		57C167B216D83A7100AF626F /* MKGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C167B116D83A7100AF626F /* MKGameLayer.m */; };
+		57CCB35E16E1E33D00253B6A /* MKGameInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */; };
+		57CCB36116E1EB6100253B6A /* MKGameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CCB36016E1EB6100253B6A /* MKGameEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		578D0DFE16D9F1FD009478BF /* MKItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKItem.m; sourceTree = "<group>"; };
 		57C167B016D83A7100AF626F /* MKGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameLayer.h; sourceTree = "<group>"; };
 		57C167B116D83A7100AF626F /* MKGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameLayer.m; sourceTree = "<group>"; };
+		57CCB35C16E1E33D00253B6A /* MKGameInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameInfoLayer.h; sourceTree = "<group>"; };
+		57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameInfoLayer.m; sourceTree = "<group>"; };
+		57CCB35F16E1EB6100253B6A /* MKGameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameEngine.h; sourceTree = "<group>"; };
+		57CCB36016E1EB6100253B6A /* MKGameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameEngine.m; sourceTree = "<group>"; };
 		57D4E4D616E0E6DA00D112F3 /* MKTestFlightToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTestFlightToken.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,16 +110,13 @@
 		578D0DD516D4FF6A009478BF /* momoKinokoGame */ = {
 			isa = PBXGroup;
 			children = (
+				57D4E4D616E0E6DA00D112F3 /* MKTestFlightToken.h */,
 				578D0DDE16D4FF6A009478BF /* MKAppDelegate.h */,
 				578D0DDF16D4FF6A009478BF /* MKAppDelegate.m */,
+				57CCB36216E1EB7300253B6A /* View */,
 				578D0DD616D4FF6A009478BF /* Supporting Files */,
-				578D0DEF16D5036F009478BF /* MKIntroLayer.h */,
-				578D0DF016D5036F009478BF /* MKIntroLayer.m */,
-				57C167B016D83A7100AF626F /* MKGameLayer.h */,
-				57C167B116D83A7100AF626F /* MKGameLayer.m */,
-				578D0DFD16D9F1FD009478BF /* MKItem.h */,
-				578D0DFE16D9F1FD009478BF /* MKItem.m */,
-				57D4E4D616E0E6DA00D112F3 /* MKTestFlightToken.h */,
+				57CCB35F16E1EB6100253B6A /* MKGameEngine.h */,
+				57CCB36016E1EB6100253B6A /* MKGameEngine.m */,
 			);
 			path = momoKinokoGame;
 			sourceTree = "<group>";
@@ -143,6 +146,21 @@
 				578D0DF716D50634009478BF /* mushroom5.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		57CCB36216E1EB7300253B6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				578D0DEF16D5036F009478BF /* MKIntroLayer.h */,
+				578D0DF016D5036F009478BF /* MKIntroLayer.m */,
+				57C167B016D83A7100AF626F /* MKGameLayer.h */,
+				57C167B116D83A7100AF626F /* MKGameLayer.m */,
+				57CCB35C16E1E33D00253B6A /* MKGameInfoLayer.h */,
+				57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */,
+				578D0DFD16D9F1FD009478BF /* MKItem.h */,
+				578D0DFE16D9F1FD009478BF /* MKItem.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +257,8 @@
 				578D0DF116D5036F009478BF /* MKIntroLayer.m in Sources */,
 				57C167B216D83A7100AF626F /* MKGameLayer.m in Sources */,
 				578D0DFF16D9F1FD009478BF /* MKItem.m in Sources */,
+				57CCB35E16E1E33D00253B6A /* MKGameInfoLayer.m in Sources */,
+				57CCB36116E1EB6100253B6A /* MKGameEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

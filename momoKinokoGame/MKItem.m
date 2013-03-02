@@ -12,7 +12,7 @@
 #define kEmergedAreaHorizontalMarginRate 0.1
 #define kItemFallingSpeed 320
 #define kItemFlipSpeed 320
-#define kFlipDistanceThreshold 24
+#define kFlipDistanceThreshold 12
 #define kFadeOutDuration 0.5
 
 @interface MKItem ()
