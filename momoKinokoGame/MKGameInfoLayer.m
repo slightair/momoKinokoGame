@@ -132,7 +132,7 @@
 - (void)gameEngineDidFinish:(NSNotification *)notification
 {
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
-    CCLabelTTF *finishLabel = [CCLabelTTF labelWithString:@"Finish !!" fontName:kLabelFontName fontSize:kFinishLabelFontSize];
+    CCLabelTTF *finishLabel = [CCLabelTTF labelWithString:@"Finish!!" fontName:kLabelFontName fontSize:kFinishLabelFontSize];
     finishLabel.position = ccp(windowSize.width / 2, windowSize.height / 2);
     finishLabel.scale = kFinishLabelScaleMin;
     [self addChild:finishLabel];

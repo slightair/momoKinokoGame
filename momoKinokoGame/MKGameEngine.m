@@ -39,6 +39,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @property (nonatomic, assign) NSInteger score;
 @property (nonatomic, strong) NSTimer *gameTimer;
 @property (nonatomic, assign) NSTimeInterval remainTime;
+@property (nonatomic, strong) NSDictionary *harvestedItems;
 
 @end
 
@@ -75,6 +76,14 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 {
     self.score = 0;
     self.remainTime = kGameTime + kTransitionDuration;
+    self.harvestedItems = [NSMutableDictionary dictionaryWithDictionary:@{
+                           @(MKItemIDMushroomAkaKinoko): @(0),
+                           @(MKItemIDMushroomHashiraDake): @(0),
+                           @(MKItemIDMushroomHukuroDake): @(0),
+                           @(MKItemIDMushroomAoKinoko): @(0),
+                           @(MKItemIDMushroomKasaKinoko): @(0),
+                           @(MKItemIDPeachHakutou): @(0),
+                           @(MKItemIDPeachOutou): @(0)}];
 
     id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKGameLayer scene]];
     [[CCDirector sharedDirector] replaceScene:transition];
@@ -116,6 +125,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 
 - (void)itemDidReachHarvestArea:(NSNotification *)notification
 {
+    MKItemID itemID = [notification.userInfo[MKItemReachedItemIDUserInfoKey] integerValue];
     MKItemKind itemKind = [notification.userInfo[MKItemReachedItemKindUserInfoKey] integerValue];
     CGPoint location = [notification.userInfo[MKItemReachedLocationUserInfoKey] CGPointValue];
 
@@ -132,6 +142,11 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
         obtainedScore = itemKind == MKItemKindMushroom ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
     }
     self.score += obtainedScore;
+
+    if (obtainedScore > 0) {
+        NSInteger count = [self.harvestedItems[@(itemID)] integerValue];
+        [(NSMutableDictionary *)self.harvestedItems setObject:@(count + 1) forKey:@(itemID)];
+    }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationPlayerObtainScore
                                                         object:self

@@ -17,13 +17,13 @@
 NSString *const MKItemNotificationReachedItem = @"MKItemNotificationReachedItem";
 
 // Notification User Info Keys
+NSString *const MKItemReachedItemIDUserInfoKey = @"MKItemReachedItemID";
 NSString *const MKItemReachedItemKindUserInfoKey = @"MKItemReachedItemKind";
 NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
 @interface MKItem ()
 
 + (id)itemWithID:(MKItemID)itemID;
-+ (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
 - (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime;
 - (void)notifyReachedItem:(NSValue *)destination;
 
@@ -183,7 +183,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:MKItemNotificationReachedItem
                                                         object:self
-                                                      userInfo:@{MKItemReachedItemKindUserInfoKey : @(self.itemKind),
+                                                      userInfo:@{MKItemReachedItemIDUserInfoKey : @(self.itemID),
+                                                                 MKItemReachedItemKindUserInfoKey : @(self.itemKind),
                                                                  MKItemReachedLocationUserInfoKey : destination}];
 }
 

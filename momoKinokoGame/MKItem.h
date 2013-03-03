@@ -16,6 +16,7 @@
 extern NSString *const MKItemNotificationReachedItem;
 
 // Notification User Info Keys
+extern NSString *const MKItemReachedItemIDUserInfoKey;
 extern NSString *const MKItemReachedItemKindUserInfoKey;
 extern NSString *const MKItemReachedLocationUserInfoKey;
 
@@ -38,6 +39,7 @@ typedef enum {
 
 @interface MKItem : CCSprite <CCTouchOneByOneDelegate>
 
++ (NSString *)imageFileNameOfItemID:(MKItemID)itemID;
 + (id)mushroom;
 + (id)peach;
 - (void)fall;

@@ -25,6 +25,8 @@ extern NSString *const MKGameEngineItemReachedLocationUserInfoKey;
 + (id)sharedEngine;
 - (void)startNewGame;
 
+@property (nonatomic, assign, readonly) NSInteger score;
 @property (nonatomic, assign, readonly) NSTimeInterval remainTime;
+@property (nonatomic, strong, readonly) NSDictionary *harvestedItems;
 
 @end
