@@ -10,6 +10,7 @@
 #import <cocos2d.h>
 #import <BlocksKit.h>
 #import "MKGameLayer.h"
+#import "MKGameResultLayer.h"
 #import "MKItem.h"
 
 #define kTransitionDuration 1.0
@@ -17,6 +18,7 @@
 #define kHarvestItemFailureScore -200
 //#define kGameTime 30.0
 #define kGameTime 5.0
+#define kWaitAfterGameFinishedDuration 3.0
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -103,6 +105,13 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationGameFinished
                                                         object:self];
+
+    double delayInSeconds = kWaitAfterGameFinishedDuration;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKGameResultLayer scene]];
+        [[CCDirector sharedDirector] replaceScene:transition];
+    });
 }
 
 - (void)itemDidReachHarvestArea:(NSNotification *)notification

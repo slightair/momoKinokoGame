@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2D2412C3E4BA196982D54 /* libPods.a */; };
 		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
+		577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 577E252F16E37EAE005A95AA /* MKGameResultLayer.m */; };
 		578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DCF16D4FF6A009478BF /* UIKit.framework */; };
 		578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD116D4FF6A009478BF /* Foundation.framework */; };
 		578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD316D4FF6A009478BF /* CoreGraphics.framework */; };
@@ -36,6 +37,8 @@
 		13C6215F8E284E6B9DF6683C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		50D2D2412C3E4BA196982D54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
+		577E252E16E37EAE005A95AA /* MKGameResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameResultLayer.h; sourceTree = "<group>"; };
+		577E252F16E37EAE005A95AA /* MKGameResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameResultLayer.m; sourceTree = "<group>"; };
 		578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momoKinokoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578D0DCF16D4FF6A009478BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		578D0DD116D4FF6A009478BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,8 @@
 				57CCB35D16E1E33D00253B6A /* MKGameInfoLayer.m */,
 				578D0DFD16D9F1FD009478BF /* MKItem.h */,
 				578D0DFE16D9F1FD009478BF /* MKItem.m */,
+				577E252E16E37EAE005A95AA /* MKGameResultLayer.h */,
+				577E252F16E37EAE005A95AA /* MKGameResultLayer.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				578D0DFF16D9F1FD009478BF /* MKItem.m in Sources */,
 				57CCB35E16E1E33D00253B6A /* MKGameInfoLayer.m in Sources */,
 				57CCB36116E1EB6100253B6A /* MKGameEngine.m in Sources */,
+				577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

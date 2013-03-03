@@ -40,12 +40,6 @@
 
 @implementation MKGameInfoLayer
 
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)onEnter
 {
     [super onEnter];
@@ -83,6 +77,14 @@
                                                object:nil];
 
     [self schedule:@selector(updateRemainTime) interval:MKGameEngineGameTimerInterval];
+}
+
+- (void)onExit
+{
+    [super onExit];
+
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)gameEngineDidUpdateScore:(NSNotification *)notification

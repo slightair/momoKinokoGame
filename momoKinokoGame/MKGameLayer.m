@@ -62,6 +62,14 @@
     [self schedule:@selector(addItem) interval:kAddItemInterval];
 }
 
+- (void)onExit
+{
+    [super onExit];
+
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)addItem
 {
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
