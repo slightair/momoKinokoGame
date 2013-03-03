@@ -17,9 +17,12 @@
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
+NSString *const MKGameEngineNotificationPlayerObtainScore = @"MKGameEngineNotificationPlayerObtainScore";
 
 // Notification User Info Keys
 NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore";
+NSString *const MKGameEnginePlayerObtainedScoreUserInfoKey = @"MKGameEnginePlayerObtainedScore";
+NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemReachedLocation";
 
 @interface MKGameEngine ()
 
@@ -76,12 +79,19 @@ NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore
         return;
     }
 
+    NSInteger obtainedScore = 0;
     if (location.x == 0) {
-        self.score += itemKind == MKItemKindPeach ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
+        obtainedScore = itemKind == MKItemKindPeach ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
     }
     else if(location.x == windowSize.width) {
-        self.score += itemKind == MKItemKindMushroom ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
+        obtainedScore = itemKind == MKItemKindMushroom ? kHarvestItemSuccessScore : kHarvestItemFailureScore;
     }
+    self.score += obtainedScore;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationPlayerObtainScore
+                                                        object:self
+                                                      userInfo:@{MKGameEnginePlayerObtainedScoreUserInfoKey: @(obtainedScore),
+                                                                 MKGameEngineItemReachedLocationUserInfoKey: notification.userInfo[MKItemReachedLocationUserInfoKey]}];
 }
 
 - (void)setScore:(NSInteger)score

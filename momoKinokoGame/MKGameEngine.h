@@ -10,9 +10,12 @@
 
 // Notifications
 extern NSString *const MKGameEngineNotificationUpdateScore;
+extern NSString *const MKGameEngineNotificationPlayerObtainScore;
 
 // Notification User Info Keys
 extern NSString *const MKGameEngineUpdatedScoreUserInfoKey;
+extern NSString *const MKGameEnginePlayerObtainedScoreUserInfoKey;
+extern NSString *const MKGameEngineItemReachedLocationUserInfoKey;
 
 @interface MKGameEngine : NSObject
 

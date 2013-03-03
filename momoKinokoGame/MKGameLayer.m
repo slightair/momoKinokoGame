@@ -10,7 +10,7 @@
 #import "MKGameInfoLayer.h"
 #import "MKItem.h"
 
-#define kAddItemInterval 0.1
+#define kAddItemInterval 0.05
 #define kEmergedAreaHorizontalMarginRate 0.1
 #define kGameInfoLayerZOrder 100
 
