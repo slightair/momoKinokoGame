@@ -9,6 +9,7 @@
 #import "MKGameLayer.h"
 #import "MKGameInfoLayer.h"
 #import "MKItem.h"
+#import "MKGameEngine.h"
 
 #define kAddItemInterval 0.05
 #define kEmergedAreaHorizontalMarginRate 0.1
@@ -17,6 +18,7 @@
 @interface MKGameLayer ()
 
 - (void)addItem;
+- (void)gameEngineDidFinish:(NSNotification *)notification;
 
 @property (nonatomic, strong) MKGameInfoLayer *infoLayer;
 
@@ -43,6 +45,11 @@
     background.position = ccp(windowSize.width / 2, windowSize.height / 2);
 
     [self addChild:background];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidFinish:)
+                                                 name:MKGameEngineNotificationGameFinished
+                                               object:nil];
 }
 
 - (void)onEnterTransitionDidFinish
@@ -68,6 +75,11 @@
 
     [self addChild:item];
     [item fall];
+}
+
+- (void)gameEngineDidFinish:(NSNotification *)notification
+{
+    [self unschedule:@selector(addItem)];
 }
 
 @end

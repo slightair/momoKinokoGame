@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define MKGameEngineGameTimerInterval 0.1
+
 // Notifications
 extern NSString *const MKGameEngineNotificationUpdateScore;
 extern NSString *const MKGameEngineNotificationPlayerObtainScore;
+extern NSString *const MKGameEngineNotificationGameFinished;
 
 // Notification User Info Keys
 extern NSString *const MKGameEngineUpdatedScoreUserInfoKey;
@@ -21,5 +24,7 @@ extern NSString *const MKGameEngineItemReachedLocationUserInfoKey;
 
 + (id)sharedEngine;
 - (void)startNewGame;
+
+@property (nonatomic, assign, readonly) NSTimeInterval remainTime;
 
 @end

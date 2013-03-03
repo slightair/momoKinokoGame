@@ -12,12 +12,16 @@
 #import "MKGameLayer.h"
 #import "MKItem.h"
 
+#define kTransitionDuration 1.0
 #define kHarvestItemSuccessScore 100
 #define kHarvestItemFailureScore -200
+//#define kGameTime 30.0
+#define kGameTime 5.0
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
 NSString *const MKGameEngineNotificationPlayerObtainScore = @"MKGameEngineNotificationPlayerObtainScore";
+NSString *const MKGameEngineNotificationGameFinished = @"MKGameEngineNotificationGameFinished";
 
 // Notification User Info Keys
 NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore";
@@ -27,8 +31,12 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @interface MKGameEngine ()
 
 - (void)itemDidReachHarvestArea:(NSNotification *)notification;
+- (void)tick:(NSTimer *)timer;
+- (void)finishGame;
 
 @property (nonatomic, assign) NSInteger score;
+@property (nonatomic, strong) NSTimer *gameTimer;
+@property (nonatomic, assign) NSTimeInterval remainTime;
 
 @end
 
@@ -64,9 +72,37 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 - (void)startNewGame
 {
     self.score = 0;
+    self.remainTime = kGameTime + kTransitionDuration;
 
-    id transition = [CCTransitionFade transitionWithDuration:1.0 scene:[MKGameLayer scene]];
+    id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKGameLayer scene]];
     [[CCDirector sharedDirector] replaceScene:transition];
+
+    if (self.gameTimer) {
+        [self.gameTimer invalidate];
+    }
+    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:MKGameEngineGameTimerInterval
+                                                      target:self
+                                                    selector:@selector(tick:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+}
+
+- (void)tick:(NSTimer *)timer
+{
+    self.remainTime -= MKGameEngineGameTimerInterval;
+
+    if (self.remainTime < 0) {
+        [timer invalidate];
+        self.gameTimer = nil;
+
+        [self finishGame];
+    }
+}
+
+- (void)finishGame
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationGameFinished
+                                                        object:self];
 }
 
 - (void)itemDidReachHarvestArea:(NSNotification *)notification
