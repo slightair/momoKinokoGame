@@ -9,12 +9,13 @@
 #import "MKIntroLayer.h"
 #import "MKGameEngine.h"
 
-#define kLabelFontName @"HiraKakuProN-W6"
+#define kTitleLabelFontName @"HiraKakuProN-W6"
+#define kStartLabelFontName @"Chalkboard SE"
 #define kLabelFontSize 24
 
 @interface MKIntroLayer ()
 
-- (void)addTitleLabel:(NSString *)title position:(CGPoint)position;
+- (void)addLabel:(NSString *)title position:(CGPoint)position fontName:(NSString *)fontName;
 
 @end
 
@@ -40,9 +41,9 @@
     background.position = ccp(windowSize.width / 2, windowSize.height / 2);
     [self addChild:background];
 
-    [self addTitleLabel:@"エクストリーム" position:ccp(windowSize.width / 2, windowSize.height / 2 + 100)];
-    [self addTitleLabel:@"もも・きのこ狩り" position:ccp(windowSize.width / 2, windowSize.height / 2 + 60)];
-    [self addTitleLabel:@"はじめる" position:ccp(windowSize.width / 2, windowSize.height / 2 - 80)];
+    [self addLabel:@"エクストリーム" position:ccp(windowSize.width / 2, windowSize.height / 2 + 100) fontName:kTitleLabelFontName];
+    [self addLabel:@"もも・きのこ狩り" position:ccp(windowSize.width / 2, windowSize.height / 2 + 60) fontName:kTitleLabelFontName];
+    [self addLabel:@"Start!!" position:ccp(windowSize.width / 2, windowSize.height / 2 - 80) fontName:kStartLabelFontName];
 
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
@@ -64,16 +65,16 @@
     [[MKGameEngine sharedEngine] startNewGame];
 }
 
-- (void)addTitleLabel:(NSString *)title position:(CGPoint)position
+- (void)addLabel:(NSString *)title position:(CGPoint)position fontName:(NSString *)fontName
 {
     CGSize shadowOffset = CGSizeMake(1, -1);
 
-    CCLabelTTF *shadowLabel = [CCLabelTTF labelWithString:title fontName:kLabelFontName fontSize:kLabelFontSize];
+    CCLabelTTF *shadowLabel = [CCLabelTTF labelWithString:title fontName:fontName fontSize:kLabelFontSize];
     shadowLabel.position = ccp(position.x + shadowOffset.width, position.y + shadowOffset.height);
     shadowLabel.color = ccc3(0, 0, 0);
     [self addChild:shadowLabel];
 
-    CCLabelTTF *label = [CCLabelTTF labelWithString:title fontName:kLabelFontName fontSize:kLabelFontSize];
+    CCLabelTTF *label = [CCLabelTTF labelWithString:title fontName:fontName fontSize:kLabelFontSize];
     label.position = position;
     [self addChild:label];
 }
