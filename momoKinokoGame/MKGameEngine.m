@@ -16,8 +16,7 @@
 #define kTransitionDuration 1.0
 #define kHarvestItemSuccessScore 100
 #define kHarvestItemFailureScore -200
-//#define kGameTime 30.0
-#define kGameTime 5.0
+#define kGameTime 30.0
 #define kWaitAfterGameFinishedDuration 3.0
 
 // Notifications

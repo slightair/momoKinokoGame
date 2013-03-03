@@ -42,7 +42,7 @@
 
     self.director = (CCDirectorIOS *)[CCDirector sharedDirector];
     self.director.wantsFullScreenLayout = YES;
-    self.director.displayStats = YES;
+    self.director.displayStats = NO;
     self.director.animationInterval = 1.0/60;
     self.director.view = glView;
     self.director.delegate = self;
