@@ -10,6 +10,30 @@
 		05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2D2412C3E4BA196982D54 /* libPods.a */; };
 		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
 		577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 577E252F16E37EAE005A95AA /* MKGameResultLayer.m */; };
+		577E253216E40789005A95AA /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253116E40789005A95AA /* background-hd.png */; };
+		577E253A16E40881005A95AA /* mushroom1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253316E40881005A95AA /* mushroom1-hd.png */; };
+		577E253B16E40881005A95AA /* mushroom2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253416E40881005A95AA /* mushroom2-hd.png */; };
+		577E253C16E40881005A95AA /* mushroom3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253516E40881005A95AA /* mushroom3-hd.png */; };
+		577E253D16E40881005A95AA /* mushroom4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253616E40881005A95AA /* mushroom4-hd.png */; };
+		577E253E16E40881005A95AA /* mushroom5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253716E40881005A95AA /* mushroom5-hd.png */; };
+		577E253F16E40881005A95AA /* peach1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253816E40881005A95AA /* peach1-hd.png */; };
+		577E254016E40881005A95AA /* peach2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253916E40881005A95AA /* peach2-hd.png */; };
+		577E255116E40A82005A95AA /* background-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254116E40A7C005A95AA /* background-ipad.png */; };
+		577E255216E40A82005A95AA /* background-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254216E40A7C005A95AA /* background-ipadhd.png */; };
+		577E255316E40A82005A95AA /* mushroom1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254316E40A7D005A95AA /* mushroom1-ipad.png */; };
+		577E255416E40A82005A95AA /* mushroom1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254416E40A7D005A95AA /* mushroom1-ipadhd.png */; };
+		577E255516E40A82005A95AA /* mushroom2-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254516E40A7E005A95AA /* mushroom2-ipad.png */; };
+		577E255616E40A82005A95AA /* mushroom2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254616E40A7E005A95AA /* mushroom2-ipadhd.png */; };
+		577E255716E40A82005A95AA /* mushroom3-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254716E40A7F005A95AA /* mushroom3-ipad.png */; };
+		577E255816E40A82005A95AA /* mushroom3-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254816E40A7F005A95AA /* mushroom3-ipadhd.png */; };
+		577E255916E40A82005A95AA /* mushroom4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254916E40A7F005A95AA /* mushroom4-ipad.png */; };
+		577E255A16E40A82005A95AA /* mushroom4-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254A16E40A80005A95AA /* mushroom4-ipadhd.png */; };
+		577E255B16E40A82005A95AA /* mushroom5-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254B16E40A80005A95AA /* mushroom5-ipad.png */; };
+		577E255C16E40A82005A95AA /* mushroom5-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254C16E40A80005A95AA /* mushroom5-ipadhd.png */; };
+		577E255D16E40A82005A95AA /* peach1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254D16E40A81005A95AA /* peach1-ipad.png */; };
+		577E255E16E40A82005A95AA /* peach1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254E16E40A81005A95AA /* peach1-ipadhd.png */; };
+		577E255F16E40A82005A95AA /* peach2-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E254F16E40A81005A95AA /* peach2-ipad.png */; };
+		577E256016E40A82005A95AA /* peach2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E255016E40A82005A95AA /* peach2-ipadhd.png */; };
 		578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DCF16D4FF6A009478BF /* UIKit.framework */; };
 		578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD116D4FF6A009478BF /* Foundation.framework */; };
 		578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD316D4FF6A009478BF /* CoreGraphics.framework */; };
@@ -39,6 +63,30 @@
 		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		577E252E16E37EAE005A95AA /* MKGameResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameResultLayer.h; sourceTree = "<group>"; };
 		577E252F16E37EAE005A95AA /* MKGameResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameResultLayer.m; sourceTree = "<group>"; };
+		577E253116E40789005A95AA /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-hd.png"; path = "Images/background-hd.png"; sourceTree = "<group>"; };
+		577E253316E40881005A95AA /* mushroom1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom1-hd.png"; path = "Images/mushroom1-hd.png"; sourceTree = "<group>"; };
+		577E253416E40881005A95AA /* mushroom2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom2-hd.png"; path = "Images/mushroom2-hd.png"; sourceTree = "<group>"; };
+		577E253516E40881005A95AA /* mushroom3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom3-hd.png"; path = "Images/mushroom3-hd.png"; sourceTree = "<group>"; };
+		577E253616E40881005A95AA /* mushroom4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom4-hd.png"; path = "Images/mushroom4-hd.png"; sourceTree = "<group>"; };
+		577E253716E40881005A95AA /* mushroom5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom5-hd.png"; path = "Images/mushroom5-hd.png"; sourceTree = "<group>"; };
+		577E253816E40881005A95AA /* peach1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach1-hd.png"; path = "Images/peach1-hd.png"; sourceTree = "<group>"; };
+		577E253916E40881005A95AA /* peach2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach2-hd.png"; path = "Images/peach2-hd.png"; sourceTree = "<group>"; };
+		577E254116E40A7C005A95AA /* background-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-ipad.png"; path = "Images/background-ipad.png"; sourceTree = "<group>"; };
+		577E254216E40A7C005A95AA /* background-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-ipadhd.png"; path = "Images/background-ipadhd.png"; sourceTree = "<group>"; };
+		577E254316E40A7D005A95AA /* mushroom1-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom1-ipad.png"; path = "Images/mushroom1-ipad.png"; sourceTree = "<group>"; };
+		577E254416E40A7D005A95AA /* mushroom1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom1-ipadhd.png"; path = "Images/mushroom1-ipadhd.png"; sourceTree = "<group>"; };
+		577E254516E40A7E005A95AA /* mushroom2-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom2-ipad.png"; path = "Images/mushroom2-ipad.png"; sourceTree = "<group>"; };
+		577E254616E40A7E005A95AA /* mushroom2-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom2-ipadhd.png"; path = "Images/mushroom2-ipadhd.png"; sourceTree = "<group>"; };
+		577E254716E40A7F005A95AA /* mushroom3-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom3-ipad.png"; path = "Images/mushroom3-ipad.png"; sourceTree = "<group>"; };
+		577E254816E40A7F005A95AA /* mushroom3-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom3-ipadhd.png"; path = "Images/mushroom3-ipadhd.png"; sourceTree = "<group>"; };
+		577E254916E40A7F005A95AA /* mushroom4-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom4-ipad.png"; path = "Images/mushroom4-ipad.png"; sourceTree = "<group>"; };
+		577E254A16E40A80005A95AA /* mushroom4-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom4-ipadhd.png"; path = "Images/mushroom4-ipadhd.png"; sourceTree = "<group>"; };
+		577E254B16E40A80005A95AA /* mushroom5-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom5-ipad.png"; path = "Images/mushroom5-ipad.png"; sourceTree = "<group>"; };
+		577E254C16E40A80005A95AA /* mushroom5-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mushroom5-ipadhd.png"; path = "Images/mushroom5-ipadhd.png"; sourceTree = "<group>"; };
+		577E254D16E40A81005A95AA /* peach1-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach1-ipad.png"; path = "Images/peach1-ipad.png"; sourceTree = "<group>"; };
+		577E254E16E40A81005A95AA /* peach1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach1-ipadhd.png"; path = "Images/peach1-ipadhd.png"; sourceTree = "<group>"; };
+		577E254F16E40A81005A95AA /* peach2-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach2-ipad.png"; path = "Images/peach2-ipad.png"; sourceTree = "<group>"; };
+		577E255016E40A82005A95AA /* peach2-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach2-ipadhd.png"; path = "Images/peach2-ipadhd.png"; sourceTree = "<group>"; };
 		578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momoKinokoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578D0DCF16D4FF6A009478BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		578D0DD116D4FF6A009478BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,13 +197,37 @@
 			isa = PBXGroup;
 			children = (
 				578D0DF316D50634009478BF /* mushroom1.png */,
+				577E253316E40881005A95AA /* mushroom1-hd.png */,
+				577E254316E40A7D005A95AA /* mushroom1-ipad.png */,
+				577E254416E40A7D005A95AA /* mushroom1-ipadhd.png */,
 				578D0DF416D50634009478BF /* mushroom2.png */,
+				577E253416E40881005A95AA /* mushroom2-hd.png */,
+				577E254516E40A7E005A95AA /* mushroom2-ipad.png */,
+				577E254616E40A7E005A95AA /* mushroom2-ipadhd.png */,
 				578D0DF516D50634009478BF /* mushroom3.png */,
+				577E253516E40881005A95AA /* mushroom3-hd.png */,
+				577E254716E40A7F005A95AA /* mushroom3-ipad.png */,
+				577E254816E40A7F005A95AA /* mushroom3-ipadhd.png */,
 				578D0DF616D50634009478BF /* mushroom4.png */,
+				577E253616E40881005A95AA /* mushroom4-hd.png */,
+				577E254916E40A7F005A95AA /* mushroom4-ipad.png */,
+				577E254A16E40A80005A95AA /* mushroom4-ipadhd.png */,
 				578D0DF716D50634009478BF /* mushroom5.png */,
+				577E253716E40881005A95AA /* mushroom5-hd.png */,
+				577E254B16E40A80005A95AA /* mushroom5-ipad.png */,
+				577E254C16E40A80005A95AA /* mushroom5-ipadhd.png */,
 				57CCB36316E1F53100253B6A /* peach1.png */,
+				577E253816E40881005A95AA /* peach1-hd.png */,
+				577E254D16E40A81005A95AA /* peach1-ipad.png */,
+				577E254E16E40A81005A95AA /* peach1-ipadhd.png */,
 				57CCB36416E1F53100253B6A /* peach2.png */,
+				577E253916E40881005A95AA /* peach2-hd.png */,
+				577E254F16E40A81005A95AA /* peach2-ipad.png */,
+				577E255016E40A82005A95AA /* peach2-ipadhd.png */,
 				577E252C16E308D2005A95AA /* background.png */,
+				577E253116E40789005A95AA /* background-hd.png */,
+				577E254116E40A7C005A95AA /* background-ipad.png */,
+				577E254216E40A7C005A95AA /* background-ipadhd.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -242,6 +314,30 @@
 				57CCB36516E1F53100253B6A /* peach1.png in Resources */,
 				57CCB36616E1F53100253B6A /* peach2.png in Resources */,
 				577E252D16E308D2005A95AA /* background.png in Resources */,
+				577E253216E40789005A95AA /* background-hd.png in Resources */,
+				577E253A16E40881005A95AA /* mushroom1-hd.png in Resources */,
+				577E253B16E40881005A95AA /* mushroom2-hd.png in Resources */,
+				577E253C16E40881005A95AA /* mushroom3-hd.png in Resources */,
+				577E253D16E40881005A95AA /* mushroom4-hd.png in Resources */,
+				577E253E16E40881005A95AA /* mushroom5-hd.png in Resources */,
+				577E253F16E40881005A95AA /* peach1-hd.png in Resources */,
+				577E254016E40881005A95AA /* peach2-hd.png in Resources */,
+				577E255116E40A82005A95AA /* background-ipad.png in Resources */,
+				577E255216E40A82005A95AA /* background-ipadhd.png in Resources */,
+				577E255316E40A82005A95AA /* mushroom1-ipad.png in Resources */,
+				577E255416E40A82005A95AA /* mushroom1-ipadhd.png in Resources */,
+				577E255516E40A82005A95AA /* mushroom2-ipad.png in Resources */,
+				577E255616E40A82005A95AA /* mushroom2-ipadhd.png in Resources */,
+				577E255716E40A82005A95AA /* mushroom3-ipad.png in Resources */,
+				577E255816E40A82005A95AA /* mushroom3-ipadhd.png in Resources */,
+				577E255916E40A82005A95AA /* mushroom4-ipad.png in Resources */,
+				577E255A16E40A82005A95AA /* mushroom4-ipadhd.png in Resources */,
+				577E255B16E40A82005A95AA /* mushroom5-ipad.png in Resources */,
+				577E255C16E40A82005A95AA /* mushroom5-ipadhd.png in Resources */,
+				577E255D16E40A82005A95AA /* peach1-ipad.png in Resources */,
+				577E255E16E40A82005A95AA /* peach1-ipadhd.png in Resources */,
+				577E255F16E40A82005A95AA /* peach2-ipad.png in Resources */,
+				577E256016E40A82005A95AA /* peach2-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

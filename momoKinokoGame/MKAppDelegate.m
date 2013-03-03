@@ -48,7 +48,7 @@
     self.director.delegate = self;
     self.director.projection = kCCDirectorProjection2D;
 
-//    [self.director enableRetinaDisplay:YES];
+    [self.director enableRetinaDisplay:YES];
 
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 
