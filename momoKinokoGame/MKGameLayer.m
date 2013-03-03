@@ -34,6 +34,17 @@
     return scene;
 }
 
+- (void)onEnter
+{
+    [super onEnter];
+
+    CGSize windowSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+    background.position = ccp(windowSize.width / 2, windowSize.height / 2);
+
+    [self addChild:background];
+}
+
 - (void)onEnterTransitionDidFinish
 {
     [super onEnterTransitionDidFinish];

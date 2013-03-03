@@ -26,11 +26,28 @@
     [super onEnter];
 
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *background = [CCSprite spriteWithFile:@"mushroom4.png"];
+    CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
     background.position = ccp(windowSize.width / 2, windowSize.height / 2);
 
     [self addChild:background];
 
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+- (void)onExit
+{
+    [super onExit];
+
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    return YES;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
     [[MKGameEngine sharedEngine] startNewGame];
 }
 

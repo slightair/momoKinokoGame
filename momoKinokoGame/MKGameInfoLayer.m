@@ -11,10 +11,11 @@
 
 #define kScoreLabelFontSize 18
 #define kScoreLabelOriginXiPhone 10
-#define kScoreLabelOriginYiPhone 10
+#define kScoreLabelOriginYiPhone 8
 #define kScoreLabelOriginXiPad 24
-#define kScoreLabelOriginYiPad 24
+#define kScoreLabelOriginYiPad 20
 #define kLabelFontName @"Chalkboard SE"
+#define kLabelKeepDuration 1.0
 #define kLabelFadeOutDuration 1.0
 #define kObtainedScoreLabelMarginHorizontal 10
 #define kLabelColorIncreaseScore ccc3(255, 255, 255)
@@ -87,6 +88,7 @@
     [self addChild:obtainedScoreLabel];
 
     id action = [CCSequence actions:
+                 [CCDelayTime actionWithDuration:kLabelKeepDuration],
                  [CCFadeOut actionWithDuration:kLabelFadeOutDuration],
                  [CCCallFuncND actionWithTarget:obtainedScoreLabel selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
                  nil];

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2D2412C3E4BA196982D54 /* libPods.a */; };
+		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
 		578D0DD016D4FF6A009478BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DCF16D4FF6A009478BF /* UIKit.framework */; };
 		578D0DD216D4FF6A009478BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD116D4FF6A009478BF /* Foundation.framework */; };
 		578D0DD416D4FF6A009478BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D0DD316D4FF6A009478BF /* CoreGraphics.framework */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		13C6215F8E284E6B9DF6683C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		50D2D2412C3E4BA196982D54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		578D0DCC16D4FF6A009478BF /* momoKinokoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momoKinokoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578D0DCF16D4FF6A009478BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		578D0DD116D4FF6A009478BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +152,7 @@
 				578D0DF716D50634009478BF /* mushroom5.png */,
 				57CCB36316E1F53100253B6A /* peach1.png */,
 				57CCB36416E1F53100253B6A /* peach2.png */,
+				577E252C16E308D2005A95AA /* background.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				578D0DFC16D50634009478BF /* mushroom5.png in Resources */,
 				57CCB36516E1F53100253B6A /* peach1.png in Resources */,
 				57CCB36616E1F53100253B6A /* peach2.png in Resources */,
+				577E252D16E308D2005A95AA /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
