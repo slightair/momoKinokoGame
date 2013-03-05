@@ -9,11 +9,13 @@
 #import "MKGameLayer.h"
 #import "MKGameInfoLayer.h"
 #import "MKItem.h"
+#import "MKSpecialItem.h"
 #import "MKGameEngine.h"
 
 #define kAddItemInterval 0.05
 #define kEmergedAreaHorizontalMarginRate 0.1
 #define kGameInfoLayerZOrder 100
+#define kSpecialItemZOrder 10
 
 @interface MKGameLayer ()
 

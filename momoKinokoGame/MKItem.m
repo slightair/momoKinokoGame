@@ -9,7 +9,6 @@
 #import "MKItem.h"
 
 #define kItemFallingSpeed 320
-#define kItemFlipSpeed 320
 #define kFlipDistanceThreshold 12
 #define kFadeOutDuration 0.5
 
