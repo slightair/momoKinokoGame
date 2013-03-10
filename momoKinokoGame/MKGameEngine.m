@@ -99,8 +99,9 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
                            @(MKItemIDMushroomHukuroDake): @(0),
                            @(MKItemIDMushroomAoKinoko): @(0),
                            @(MKItemIDMushroomKasaKinoko): @(0),
-                           @(MKItemIDPeachHakutou): @(0),
-                           @(MKItemIDPeachOutou): @(0)}];
+                           @(MKItemIDPeachBamiyan): @(0),
+                           @(MKItemIDPeachOutou): @(0),
+                           @(MKItemIDPeachHakutou): @(0)}];
 
     id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKGameLayer scene]];
     [[CCDirector sharedDirector] replaceScene:transition];
@@ -205,7 +206,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
                                                         object:self
                                                       userInfo:@{MKGameEngineUpdatedScoreUserInfoKey: @(_score)}];
 
-    if (_score > kSpecialItemSupplyScoreInterval * (self.specialItemCount + 1)) {
+    if (_score >= kSpecialItemSupplyScoreInterval * (self.specialItemCount + 1)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationSupplySpecialItem
                                                             object:self];
         self.specialItemCount++;

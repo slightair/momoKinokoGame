@@ -14,6 +14,10 @@
 		575E061816ECC7020036FE41 /* magicalClock-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061416ECC7020036FE41 /* magicalClock-ipadhd.png */; };
 		575E061916ECC7020036FE41 /* magicalClock-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061516ECC7020036FE41 /* magicalClock-ipad.png */; };
 		575E061A16ECC7020036FE41 /* magicalClock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061616ECC7020036FE41 /* magicalClock-hd.png */; };
+		575E061F16ECCD910036FE41 /* peach3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061B16ECCD910036FE41 /* peach3-hd.png */; };
+		575E062016ECCD910036FE41 /* peach3-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061C16ECCD910036FE41 /* peach3-ipadhd.png */; };
+		575E062116ECCD910036FE41 /* peach3-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061D16ECCD910036FE41 /* peach3-ipad.png */; };
+		575E062216ECCD910036FE41 /* peach3.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061E16ECCD910036FE41 /* peach3.png */; };
 		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
 		577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 577E252F16E37EAE005A95AA /* MKGameResultLayer.m */; };
 		577E253216E40789005A95AA /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253116E40789005A95AA /* background-hd.png */; };
@@ -82,6 +86,10 @@
 		575E061416ECC7020036FE41 /* magicalClock-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-ipadhd.png"; path = "Images/magicalClock-ipadhd.png"; sourceTree = "<group>"; };
 		575E061516ECC7020036FE41 /* magicalClock-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-ipad.png"; path = "Images/magicalClock-ipad.png"; sourceTree = "<group>"; };
 		575E061616ECC7020036FE41 /* magicalClock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-hd.png"; path = "Images/magicalClock-hd.png"; sourceTree = "<group>"; };
+		575E061B16ECCD910036FE41 /* peach3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach3-hd.png"; path = "Images/peach3-hd.png"; sourceTree = "<group>"; };
+		575E061C16ECCD910036FE41 /* peach3-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach3-ipadhd.png"; path = "Images/peach3-ipadhd.png"; sourceTree = "<group>"; };
+		575E061D16ECCD910036FE41 /* peach3-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "peach3-ipad.png"; path = "Images/peach3-ipad.png"; sourceTree = "<group>"; };
+		575E061E16ECCD910036FE41 /* peach3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = peach3.png; path = Images/peach3.png; sourceTree = "<group>"; };
 		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		577E252E16E37EAE005A95AA /* MKGameResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameResultLayer.h; sourceTree = "<group>"; };
 		577E252F16E37EAE005A95AA /* MKGameResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameResultLayer.m; sourceTree = "<group>"; };
@@ -262,6 +270,10 @@
 				577E253916E40881005A95AA /* peach2-hd.png */,
 				577E254F16E40A81005A95AA /* peach2-ipad.png */,
 				577E255016E40A82005A95AA /* peach2-ipadhd.png */,
+				575E061E16ECCD910036FE41 /* peach3.png */,
+				575E061B16ECCD910036FE41 /* peach3-hd.png */,
+				575E061D16ECCD910036FE41 /* peach3-ipad.png */,
+				575E061C16ECCD910036FE41 /* peach3-ipadhd.png */,
 				577E252C16E308D2005A95AA /* background.png */,
 				577E253116E40789005A95AA /* background-hd.png */,
 				577E254116E40A7C005A95AA /* background-ipad.png */,
@@ -396,6 +408,10 @@
 				575E061816ECC7020036FE41 /* magicalClock-ipadhd.png in Resources */,
 				575E061916ECC7020036FE41 /* magicalClock-ipad.png in Resources */,
 				575E061A16ECC7020036FE41 /* magicalClock-hd.png in Resources */,
+				575E061F16ECCD910036FE41 /* peach3-hd.png in Resources */,
+				575E062016ECCD910036FE41 /* peach3-ipadhd.png in Resources */,
+				575E062116ECCD910036FE41 /* peach3-ipad.png in Resources */,
+				575E062216ECCD910036FE41 /* peach3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

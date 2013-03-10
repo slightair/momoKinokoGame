@@ -62,7 +62,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
 + (id)peach
 {
-    MKItemID itemID = MKItemIDPeachHakutou + arc4random() % kNumberOfPeach;
+    MKItemID itemID = MKItemIDPeachBamiyan + arc4random() % kNumberOfPeach;
     MKItem *item = [self itemWithID:itemID];
     item.itemKind = MKItemKindPeach;
 
@@ -94,12 +94,16 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
             fileName = @"mushroom5.png";
             break;
 
-        case MKItemIDPeachHakutou:
+        case MKItemIDPeachBamiyan:
             fileName = @"peach1.png";
             break;
 
         case MKItemIDPeachOutou:
             fileName = @"peach2.png";
+            break;
+
+        case MKItemIDPeachHakutou:
+            fileName = @"peach3.png";
             break;
 
         default:

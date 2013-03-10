@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 #define kNumberOfMushroom 5
-#define kNumberOfPeach 2
+#define kNumberOfPeach 3
 
 // Notifications
 extern NSString *const MKItemNotificationReachedItem;
@@ -26,8 +26,9 @@ typedef enum {
     MKItemIDMushroomHukuroDake,
     MKItemIDMushroomAoKinoko,
     MKItemIDMushroomKasaKinoko,
-    MKItemIDPeachHakutou = 2000,
+    MKItemIDPeachBamiyan = 2000,
     MKItemIDPeachOutou,
+    MKItemIDPeachHakutou,
     MKItemIDUnknown = -1,
 } MKItemID;
 

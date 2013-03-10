@@ -44,7 +44,7 @@
     [self addChild:background];
 
     MKGameEngine *gameEngine = [MKGameEngine sharedEngine];
-    CGFloat offsetY = windowSize.height / 2 + 140;
+    CGFloat offsetY = windowSize.height / 2 + 150;
     for (NSNumber *itemID in [[gameEngine.harvestedItems allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
         [self addItemResult:[itemID integerValue] count:[gameEngine.harvestedItems[itemID] integerValue] position:ccp(windowSize.width / 2, offsetY)];
         offsetY -= kHarvestedItemLabelInterval;
@@ -52,8 +52,8 @@
 
     NSString *scoreString = [NSString stringWithFormat:@"Score: %d", gameEngine.score];
     [self addTitleLabel:@"Result" position:ccp(windowSize.width / 2, windowSize.height / 2 + 200)];
-    [self addTitleLabel:scoreString position:ccp(windowSize.width / 2, windowSize.height / 2 - 70)];
-    [self addTitleLabel:@"Retry!!" position:ccp(windowSize.width / 2, windowSize.height / 2 - 140)];
+    [self addTitleLabel:scoreString position:ccp(windowSize.width / 2, windowSize.height / 2 - 90)];
+    [self addTitleLabel:@"Retry!!" position:ccp(windowSize.width / 2, windowSize.height / 2 - 160)];
 
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
