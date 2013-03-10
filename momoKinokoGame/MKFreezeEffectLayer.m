@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, MKFreezeEffectState)
 #define kLayerColor (ccc4(0, 0, 0, 255))
 #define kNormalColor (ccc4f(1.0, 1.0, 1.0, 0.0))
 #define kNegativeColor (ccc4f(1.0, 1.0, 1.0, 1.0))
-#define kCircleSizeDelta 8
+#define kCircleSizeDelta 12
 
 void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 

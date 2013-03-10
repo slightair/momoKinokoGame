@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		05739066DC7C48A18DB0F574 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2D2412C3E4BA196982D54 /* libPods.a */; };
 		575E060C16E571520036FE41 /* MKSpecialItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 575E060B16E571520036FE41 /* MKSpecialItem.m */; };
-		575E060F16E618550036FE41 /* magicalClock.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E060E16E618550036FE41 /* magicalClock.png */; };
 		575E061216E6C2650036FE41 /* MKFreezeEffectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 575E061116E6C2650036FE41 /* MKFreezeEffectLayer.m */; };
+		575E061716ECC7020036FE41 /* magicalClock.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061316ECC7020036FE41 /* magicalClock.png */; };
+		575E061816ECC7020036FE41 /* magicalClock-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061416ECC7020036FE41 /* magicalClock-ipadhd.png */; };
+		575E061916ECC7020036FE41 /* magicalClock-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061516ECC7020036FE41 /* magicalClock-ipad.png */; };
+		575E061A16ECC7020036FE41 /* magicalClock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061616ECC7020036FE41 /* magicalClock-hd.png */; };
 		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
 		577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 577E252F16E37EAE005A95AA /* MKGameResultLayer.m */; };
 		577E253216E40789005A95AA /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253116E40789005A95AA /* background-hd.png */; };
@@ -73,9 +76,12 @@
 		50D2D2412C3E4BA196982D54 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		575E060A16E571520036FE41 /* MKSpecialItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSpecialItem.h; sourceTree = "<group>"; };
 		575E060B16E571520036FE41 /* MKSpecialItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSpecialItem.m; sourceTree = "<group>"; };
-		575E060E16E618550036FE41 /* magicalClock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magicalClock.png; path = Images/magicalClock.png; sourceTree = "<group>"; };
 		575E061016E6C2650036FE41 /* MKFreezeEffectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFreezeEffectLayer.h; sourceTree = "<group>"; };
 		575E061116E6C2650036FE41 /* MKFreezeEffectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFreezeEffectLayer.m; sourceTree = "<group>"; };
+		575E061316ECC7020036FE41 /* magicalClock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magicalClock.png; path = Images/magicalClock.png; sourceTree = "<group>"; };
+		575E061416ECC7020036FE41 /* magicalClock-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-ipadhd.png"; path = "Images/magicalClock-ipadhd.png"; sourceTree = "<group>"; };
+		575E061516ECC7020036FE41 /* magicalClock-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-ipad.png"; path = "Images/magicalClock-ipad.png"; sourceTree = "<group>"; };
+		575E061616ECC7020036FE41 /* magicalClock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magicalClock-hd.png"; path = "Images/magicalClock-hd.png"; sourceTree = "<group>"; };
 		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		577E252E16E37EAE005A95AA /* MKGameResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameResultLayer.h; sourceTree = "<group>"; };
 		577E252F16E37EAE005A95AA /* MKGameResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameResultLayer.m; sourceTree = "<group>"; };
@@ -260,7 +266,10 @@
 				577E253116E40789005A95AA /* background-hd.png */,
 				577E254116E40A7C005A95AA /* background-ipad.png */,
 				577E254216E40A7C005A95AA /* background-ipadhd.png */,
-				575E060E16E618550036FE41 /* magicalClock.png */,
+				575E061316ECC7020036FE41 /* magicalClock.png */,
+				575E061416ECC7020036FE41 /* magicalClock-ipadhd.png */,
+				575E061516ECC7020036FE41 /* magicalClock-ipad.png */,
+				575E061616ECC7020036FE41 /* magicalClock-hd.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -383,7 +392,10 @@
 				577E256C16E41999005A95AA /* Default-Portrait~ipad.png in Resources */,
 				577E256F16E41A31005A95AA /* Default-Landscape@2x~ipad.png in Resources */,
 				577E257016E41A31005A95AA /* Default-Landscape~ipad.png in Resources */,
-				575E060F16E618550036FE41 /* magicalClock.png in Resources */,
+				575E061716ECC7020036FE41 /* magicalClock.png in Resources */,
+				575E061816ECC7020036FE41 /* magicalClock-ipadhd.png in Resources */,
+				575E061916ECC7020036FE41 /* magicalClock-ipad.png in Resources */,
+				575E061A16ECC7020036FE41 /* magicalClock-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
