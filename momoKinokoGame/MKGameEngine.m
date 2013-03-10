@@ -12,6 +12,7 @@
 #import "MKGameLayer.h"
 #import "MKGameResultLayer.h"
 #import "MKItem.h"
+#import "MKSpecialItem.h"
 
 #define kTransitionDuration 1.0
 #define kHarvestItemSuccessScore 100
@@ -22,6 +23,8 @@
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
 NSString *const MKGameEngineNotificationPlayerObtainScore = @"MKGameEngineNotificationPlayerObtainScore";
+NSString *const MKGameEngineNotificationStartTimeStop = @"MKGameEngineNotificationStartTimeStop";
+NSString *const MKGameEngineNotificationFinishTimeStop = @"MKGameEngineNotificationFinishTimeStop";
 NSString *const MKGameEngineNotificationGameFinished = @"MKGameEngineNotificationGameFinished";
 
 // Notification User Info Keys
@@ -32,6 +35,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @interface MKGameEngine ()
 
 - (void)itemDidReachHarvestArea:(NSNotification *)notification;
+- (void)specialItemDidTouch:(NSNotification *)notification;
 - (void)tick:(NSTimer *)timer;
 - (void)finishGame;
 
@@ -61,6 +65,11 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(itemDidReachHarvestArea:)
                                                      name:MKItemNotificationReachedItem
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(specialItemDidTouch:)
+                                                     name:MKSpecialItemNotificationDidTouchItem
                                                    object:nil];
     }
     return self;
@@ -151,6 +160,13 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
                                                         object:self
                                                       userInfo:@{MKGameEnginePlayerObtainedScoreUserInfoKey: @(obtainedScore),
                                                                  MKGameEngineItemReachedLocationUserInfoKey: notification.userInfo[MKItemReachedLocationUserInfoKey]}];
+}
+
+- (void)specialItemDidTouch:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationStartTimeStop
+                                                        object:self
+                                                      userInfo:notification.userInfo];
 }
 
 - (void)setScore:(NSInteger)score

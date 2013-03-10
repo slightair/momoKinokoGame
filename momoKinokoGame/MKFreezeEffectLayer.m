@@ -7,6 +7,7 @@
 //
 
 #import "MKFreezeEffectLayer.h"
+#import "MKGameEngine.h"
 #import "MKSpecialItem.h"
 
 typedef NS_ENUM(NSInteger, MKFreezeEffectState)
@@ -18,7 +19,8 @@ typedef NS_ENUM(NSInteger, MKFreezeEffectState)
     MKFreezeEffectStateUnknown = -1
 };
 
-#define kNormalColor (ccc4f(0.0, 0.0, 0.0, 1.0))
+#define kLayerColor (ccc4(0, 0, 0, 255))
+#define kNormalColor (ccc4f(1.0, 1.0, 1.0, 0.0))
 #define kNegativeColor (ccc4f(1.0, 1.0, 1.0, 1.0))
 #define kCircleSizeDelta 8
 
@@ -26,8 +28,8 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 
 @interface MKFreezeEffectLayer ()
 
-- (void)freezingDidStart:(NSNotification *)notification;
-- (void)thawingDidStart:(NSNotification *)notification;
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification;
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification;
 
 @property (nonatomic, assign) CGPoint circlePosition;
 @property (nonatomic, assign) CGFloat circleSize;
@@ -40,7 +42,7 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 
 + (id)node
 {
-    CCLayerColor *layer = [self layerWithColor:ccc4BFromccc4F(kNormalColor)];
+    CCLayerColor *layer = [self layerWithColor:kLayerColor];
     layer.blendFunc = (ccBlendFunc){GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_COLOR};
 
     return layer;
@@ -100,9 +102,14 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
     self.effectState = MKFreezeEffectStateNotFreezing;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(freezingDidStart:)
-                                                 name:MKSpecialItemNotificationDidTouchItem
-                                               object:nil];
+                                             selector:@selector(gameEngineDidStartTimeStop:)
+                                                 name:MKGameEngineNotificationStartTimeStop
+                                               object:[MKGameEngine sharedEngine]];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidFinishTimeStop:)
+                                                 name:MKGameEngineNotificationFinishTimeStop
+                                               object:[MKGameEngine sharedEngine]];
 }
 
 - (void)onExit
@@ -112,7 +119,7 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)freezingDidStart:(NSNotification *)notification
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification
 {
     CGPoint location = [notification.userInfo[MKSpecialItemExecutionLocationUserInfoKey] CGPointValue];
 
@@ -121,7 +128,7 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
     self.circlePosition = location;
 }
 
-- (void)thawingDidStart:(NSNotification *)notification
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification
 {
     self.effectState = MKFreezeEffectStateThawing;
     self.circleSize = 0.0;

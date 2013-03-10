@@ -7,6 +7,7 @@
 //
 
 #import "MKItem.h"
+#import "MKGameEngine.h"
 
 #define kItemFallingSpeed 320
 #define kFlipDistanceThreshold 12
@@ -25,6 +26,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 + (id)itemWithID:(MKItemID)itemID;
 - (void)flipFrom:(CGPoint)from to:(CGPoint)to deltaTime:(CFAbsoluteTime)deltaTime;
 - (void)notifyReachedItem:(NSValue *)destination;
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification;
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification;
 
 @property (nonatomic, assign) MKItemID itemID;
 @property (nonatomic, assign) MKItemKind itemKind;
@@ -109,6 +112,16 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
     [super onEnter];
 
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidStartTimeStop:)
+                                                 name:MKGameEngineNotificationStartTimeStop
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidFinishTimeStop:)
+                                                 name:MKGameEngineNotificationFinishTimeStop
+                                               object:nil];
 }
 
 - (void)onExit
@@ -116,6 +129,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
     [super onExit];
 
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)fall
@@ -185,6 +200,16 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
                                                       userInfo:@{MKItemReachedItemIDUserInfoKey : @(self.itemID),
                                                                  MKItemReachedItemKindUserInfoKey : @(self.itemKind),
                                                                  MKItemReachedLocationUserInfoKey : destination}];
+}
+
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification
+{
+    [self pauseSchedulerAndActions];
+}
+
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification
+{
+    [self resumeSchedulerAndActions];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event

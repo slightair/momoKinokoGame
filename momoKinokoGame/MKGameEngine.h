@@ -13,6 +13,8 @@
 // Notifications
 extern NSString *const MKGameEngineNotificationUpdateScore;
 extern NSString *const MKGameEngineNotificationPlayerObtainScore;
+extern NSString *const MKGameEngineNotificationStartTimeStop;
+extern NSString *const MKGameEngineNotificationFinishTimeStop;
 extern NSString *const MKGameEngineNotificationGameFinished;
 
 // Notification User Info Keys

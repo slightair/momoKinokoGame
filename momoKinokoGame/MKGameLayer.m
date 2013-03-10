@@ -22,6 +22,8 @@
 @interface MKGameLayer ()
 
 - (void)addItem;
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification;
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification;
 - (void)gameEngineDidFinish:(NSNotification *)notification;
 
 @property (nonatomic, strong) MKGameInfoLayer *infoLayer;
@@ -51,6 +53,15 @@
 
     [self addChild:background];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidStartTimeStop:)
+                                                 name:MKGameEngineNotificationStartTimeStop
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidFinishTimeStop:)
+                                                 name:MKGameEngineNotificationFinishTimeStop
+                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gameEngineDidFinish:)
                                                  name:MKGameEngineNotificationGameFinished
@@ -90,6 +101,16 @@
 
     [self addChild:item];
     [item fall];
+}
+
+- (void)gameEngineDidStartTimeStop:(NSNotification *)notification
+{
+    [self pauseSchedulerAndActions];
+}
+
+- (void)gameEngineDidFinishTimeStop:(NSNotification *)notification
+{
+    [self resumeSchedulerAndActions];
 }
 
 - (void)gameEngineDidFinish:(NSNotification *)notification
