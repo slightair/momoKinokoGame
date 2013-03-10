@@ -9,17 +9,30 @@
 #import "MKFreezeEffectLayer.h"
 #import "MKSpecialItem.h"
 
+typedef NS_ENUM(NSInteger, MKFreezeEffectState)
+{
+    MKFreezeEffectStateNotFreezing = 100,
+    MKFreezeEffectStateFreezing,
+    MKFreezeEffectStateFroze,
+    MKFreezeEffectStateThawing,
+    MKFreezeEffectStateUnknown = -1
+};
+
+#define kNormalColor (ccc4f(0.0, 0.0, 0.0, 1.0))
+#define kNegativeColor (ccc4f(1.0, 1.0, 1.0, 1.0))
 #define kCircleSizeDelta 8
 
 void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 
 @interface MKFreezeEffectLayer ()
 
-- (void)specialItemDidTouch:(NSNotification *)notification;
+- (void)freezingDidStart:(NSNotification *)notification;
+- (void)thawingDidStart:(NSNotification *)notification;
 
 @property (nonatomic, assign) CGPoint circlePosition;
 @property (nonatomic, assign) CGFloat circleSize;
 @property (nonatomic, assign) CGFloat circleSizeMax;
+@property (nonatomic, assign) MKFreezeEffectState effectState;
 
 @end
 
@@ -27,7 +40,7 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 
 + (id)node
 {
-    CCLayerColor *layer = [self layerWithColor:ccc4(0, 0, 0, 255)];
+    CCLayerColor *layer = [self layerWithColor:ccc4BFromccc4F(kNormalColor)];
     layer.blendFunc = (ccBlendFunc){GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_COLOR};
 
     return layer;
@@ -37,15 +50,40 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
 {
     [super draw];
 
-    if (CGPointEqualToPoint(self.circlePosition, CGPointZero)) {
-        return;
-    }
-    
-    drawFilledCircle(self.circlePosition, self.circleSize, ccc4f(1.0, 1.0, 1.0, 1.0));
+    CGSize windowSize = [CCDirector sharedDirector].winSize;
+    switch (self.effectState) {
+        case MKFreezeEffectStateNotFreezing:
+            break;
 
-    self.circleSize += kCircleSizeDelta;
-    if (self.circleSize > self.circleSizeMax) {
-        self.circlePosition = CGPointZero;
+        case MKFreezeEffectStateFreezing:
+            drawFilledCircle(self.circlePosition, self.circleSize, kNegativeColor);
+
+            self.circleSize += kCircleSizeDelta;
+            if (self.circleSize > self.circleSizeMax) {
+                self.effectState = MKFreezeEffectStateFroze;
+                self.circleSize = 0;
+            }
+
+            break;
+
+        case MKFreezeEffectStateFroze:
+            ccDrawSolidRect(CGPointZero, ccp(windowSize.width, windowSize.height), kNegativeColor);
+            break;
+
+        case MKFreezeEffectStateThawing:
+            ccDrawSolidRect(CGPointZero, ccp(windowSize.width, windowSize.height), kNegativeColor);
+            drawFilledCircle(self.circlePosition, self.circleSize, kNormalColor);
+
+            self.circleSize += kCircleSizeDelta;
+            if (self.circleSize > self.circleSizeMax) {
+                self.effectState = MKFreezeEffectStateNotFreezing;
+                self.circleSize = 0;
+            }
+
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -59,9 +97,10 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
     self.circleSize = 0.0;
     self.circleSizeMax = circleSizeMax;
     self.circlePosition = CGPointZero;
+    self.effectState = MKFreezeEffectStateNotFreezing;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(specialItemDidTouch:)
+                                             selector:@selector(freezingDidStart:)
                                                  name:MKSpecialItemNotificationDidTouchItem
                                                object:nil];
 }
@@ -73,12 +112,19 @@ void drawFilledCircle(CGPoint center, float r, ccColor4F color);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)specialItemDidTouch:(NSNotification *)notification
+- (void)freezingDidStart:(NSNotification *)notification
 {
     CGPoint location = [notification.userInfo[MKSpecialItemExecutionLocationUserInfoKey] CGPointValue];
 
+    self.effectState = MKFreezeEffectStateFreezing;
     self.circleSize = 0.0;
     self.circlePosition = location;
+}
+
+- (void)thawingDidStart:(NSNotification *)notification
+{
+    self.effectState = MKFreezeEffectStateThawing;
+    self.circleSize = 0.0;
 }
 
 @end
