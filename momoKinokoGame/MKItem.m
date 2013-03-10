@@ -159,7 +159,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
         destY = movedY > 0 ? windowSize.height : 0;
     }
 
-        CGFloat moved = sqrt(pow(movedX, 2) + pow(movedY, 2));
+    CGFloat moved = sqrt(pow(movedX, 2) + pow(movedY, 2));
     CGFloat move = sqrt(pow(destX - to.x, 2) + pow(destY - to.y, 2));
     ccTime duration = move / moved * deltaTime;
 
