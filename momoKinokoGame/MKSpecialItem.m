@@ -9,7 +9,7 @@
 #import "MKSpecialItem.h"
 
 #define kImageFileName @"magicalClock.png"
-#define kItemFallingSpeed 320
+#define kItemFallingSpeed 160
 #define kItemScaleUpMax 5.0
 #define kFadeOutDuration 0.5
 

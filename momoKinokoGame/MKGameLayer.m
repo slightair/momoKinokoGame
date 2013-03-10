@@ -22,6 +22,8 @@
 @interface MKGameLayer ()
 
 - (void)addItem;
+- (void)dropItem:(id)item;
+- (void)gameEngineDidSupplySpecialItem:(NSNotification *)notification;
 - (void)gameEngineDidStartTimeStop:(NSNotification *)notification;
 - (void)gameEngineDidFinishTimeStop:(NSNotification *)notification;
 - (void)gameEngineDidFinish:(NSNotification *)notification;
@@ -54,6 +56,11 @@
     [self addChild:background];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameEngineDidSupplySpecialItem:)
+                                                 name:MKGameEngineNotificationSupplySpecialItem
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gameEngineDidStartTimeStop:)
                                                  name:MKGameEngineNotificationStartTimeStop
                                                object:nil];
@@ -62,6 +69,7 @@
                                              selector:@selector(gameEngineDidFinishTimeStop:)
                                                  name:MKGameEngineNotificationFinishTimeStop
                                                object:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gameEngineDidFinish:)
                                                  name:MKGameEngineNotificationGameFinished
@@ -90,17 +98,26 @@
 
 - (void)addItem
 {
-    CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
     MKItem *item = (arc4random() % 100) < 50 ? [MKItem mushroom] : [MKItem peach];
+    [self dropItem:item];
+}
 
+- (void)dropItem:(id)item
+{
+    CGSize windowSize = [[CCDirector sharedDirector] winSize];
     CGFloat horizontalMargin = windowSize.width * kEmergedAreaHorizontalMarginRate;
     NSInteger emergedAreaWidth = windowSize.width - horizontalMargin * 2;
     CGFloat positionX = arc4random() % emergedAreaWidth + horizontalMargin;
-    item.position = ccp(positionX, windowSize.height + item.textureRect.size.height / 2);
+    ((CCSprite *)item).position = ccp(positionX, windowSize.height + ((CCSprite *)item).textureRect.size.height / 2);
 
     [self addChild:item];
     [item fall];
+}
+
+- (void)gameEngineDidSupplySpecialItem:(NSNotification *)notification
+{
+    MKSpecialItem *item = [MKSpecialItem magicalClock];
+    [self dropItem:item];
 }
 
 - (void)gameEngineDidStartTimeStop:(NSNotification *)notification

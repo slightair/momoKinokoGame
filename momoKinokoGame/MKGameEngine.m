@@ -20,6 +20,7 @@
 #define kGameTime 30.0
 #define kWaitAfterGameFinishedDuration 3.0
 #define kTimeStopTime 5.0
+#define kSpecialItemSupplyScoreInterval 1000
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -27,6 +28,7 @@ NSString *const MKGameEngineNotificationPlayerObtainScore = @"MKGameEngineNotifi
 NSString *const MKGameEngineNotificationStartTimeStop = @"MKGameEngineNotificationStartTimeStop";
 NSString *const MKGameEngineNotificationFinishTimeStop = @"MKGameEngineNotificationFinishTimeStop";
 NSString *const MKGameEngineNotificationGameFinished = @"MKGameEngineNotificationGameFinished";
+NSString *const MKGameEngineNotificationSupplySpecialItem = @"MKGameEngineNotificationSupplySpecialItem";
 
 // Notification User Info Keys
 NSString *const MKGameEngineUpdatedScoreUserInfoKey = @"MKGameEngineUpdatedScore";
@@ -46,6 +48,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @property (nonatomic, strong) NSDictionary *harvestedItems;
 @property (nonatomic, assign) BOOL isTimeStop;
 @property (nonatomic, assign) NSTimeInterval remainTimeStopTime;
+@property (nonatomic, assign) BOOL specialItemCount;
 
 @end
 
@@ -89,6 +92,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
     self.remainTime = kGameTime + kTransitionDuration;
     self.remainTimeStopTime = 0.0;
     self.isTimeStop = NO;
+    self.specialItemCount = 0;
     self.harvestedItems = [NSMutableDictionary dictionaryWithDictionary:@{
                            @(MKItemIDMushroomAkaKinoko): @(0),
                            @(MKItemIDMushroomHashiraDake): @(0),
@@ -200,6 +204,12 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
     [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationUpdateScore
                                                         object:self
                                                       userInfo:@{MKGameEngineUpdatedScoreUserInfoKey: @(_score)}];
+
+    if (_score > kSpecialItemSupplyScoreInterval * (self.specialItemCount + 1)) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationSupplySpecialItem
+                                                            object:self];
+        self.specialItemCount++;
+    }
 }
 
 @end
