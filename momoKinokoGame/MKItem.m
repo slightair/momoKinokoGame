@@ -33,7 +33,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 @property (nonatomic, assign) MKItemKind itemKind;
 @property (nonatomic, assign) CGPoint prevLocation;
 @property (nonatomic, assign) CFAbsoluteTime prevTime;
-@property (nonatomic, assign) BOOL isFlipped;
+@property (nonatomic, strong) CCAction *flipAction;
+@property (nonatomic, assign) BOOL isFrozen;
 
 @end
 
@@ -44,7 +45,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
     NSString *imageFileName = [self imageFileNameOfItemID:itemID];
     MKItem *item = [MKItem spriteWithFile:imageFileName];
     item.itemID = itemID;
-    item.isFlipped = NO;
+    item.flipAction = nil;
+    item.isFrozen = NO;
 
     return item;
 }
@@ -190,7 +192,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
                  [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
                  nil];
 
-    [self runAction:action];
+    self.flipAction = action;
 }
 
 - (void)notifyReachedItem:(NSValue *)destination
@@ -205,15 +207,27 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 - (void)gameEngineDidStartTimeStop:(NSNotification *)notification
 {
     [self pauseSchedulerAndActions];
+    self.isFrozen = YES;
 }
 
 - (void)gameEngineDidFinishTimeStop:(NSNotification *)notification
 {
-    [self resumeSchedulerAndActions];
+    self.isFrozen = NO;
+
+    if (self.flipAction) {
+        [self runAction:self.flipAction];
+    }
+    else {
+        [self resumeSchedulerAndActions];
+    }
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if (self.flipAction) {
+        return NO;
+    }
+
     CGPoint location = [touch locationInView:touch.view];
     location = [[CCDirector sharedDirector] convertToGL:location];
     CGSize itemSize = self.textureRect.size;
@@ -236,7 +250,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (self.isFlipped) {
+    if (self.flipAction) {
         return;
     }
 
@@ -253,7 +267,9 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
         CGFloat distance = sqrt(pow(movedX, 2) + pow(movedY, 2));
         if (distance > kFlipDistanceThreshold) {
             [self flipFrom:self.prevLocation to:location deltaTime:deltaTime];
-            self.isFlipped = YES;
+            if (!self.isFrozen) {
+                [self runAction:self.flipAction];
+            }
         }
         else {
             self.prevLocation = location;
@@ -267,7 +283,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 {
     self.prevLocation = CGPointZero;
 
-    if (!self.isFlipped) {
+    if (!self.flipAction) {
         id action = [CCSequence actions:
                      [CCFadeOut actionWithDuration:kFadeOutDuration],
                      [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
