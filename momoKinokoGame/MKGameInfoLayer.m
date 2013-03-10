@@ -10,6 +10,7 @@
 #import "MKGameEngine.h"
 
 #define kLabelFontSize 18
+#define kRemainTimeStopTimeLabelFontSize 180
 #define kLabelOriginXiPhone 10
 #define kLabelOriginYiPhone 8
 #define kLabelOriginXiPad 24
@@ -24,6 +25,7 @@
 #define kFinishLabelScaleUpDuration 1.0
 #define kFinishLabelKeepDuration 0.3
 #define kFinishLabelScaleMin 0.3
+#define kRemainTimeStopTimeLabelOpacity 64
 
 @interface MKGameInfoLayer ()
 
@@ -35,6 +37,7 @@
 
 @property (nonatomic, strong) CCLabelTTF *scoreLabel;
 @property (nonatomic, strong) CCLabelTTF *remainTimeLabel;
+@property (nonatomic, strong) CCLabelTTF *remainTimeStopTimeLabel;
 
 @end
 
@@ -58,8 +61,13 @@
     self.remainTimeLabel.anchorPoint = ccp(1.0, 1.0);
     self.remainTimeLabel.position = ccp(windowSize.width - labelOriginX, windowSize.height - labelOriginY);
 
+    self.remainTimeStopTimeLabel = [CCLabelTTF labelWithString:@"" fontName:kLabelFontName fontSize:kRemainTimeStopTimeLabelFontSize];
+    self.remainTimeStopTimeLabel.position = ccp(windowSize.width / 2, windowSize.height / 2);
+    self.remainTimeStopTimeLabel.opacity = kRemainTimeStopTimeLabelOpacity;
+
     [self addChild:self.scoreLabel];
     [self addChild:self.remainTimeLabel];
+    [self addChild:self.remainTimeStopTimeLabel];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gameEngineDidUpdateScore:)
@@ -126,7 +134,14 @@
     if (remainTime < 0) {
         remainTime = 0;
     }
-    self.remainTimeLabel.string = [NSString stringWithFormat:@"%.1f", remainTime];
+    self.remainTimeLabel.string = [NSString stringWithFormat:@"Time: %.1f", remainTime];
+
+    NSTimeInterval remainTimeStopTime = [[MKGameEngine sharedEngine] remainTimeStopTime];
+    NSString *remainTimeStopTimeLabelString = @"";
+    if (remainTimeStopTime > 0) {
+        remainTimeStopTimeLabelString = [NSString stringWithFormat:@"%.f", ceil(remainTimeStopTime)];
+    }
+    self.remainTimeStopTimeLabel.string = remainTimeStopTimeLabelString;
 }
 
 - (void)gameEngineDidFinish:(NSNotification *)notification

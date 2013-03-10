@@ -19,6 +19,7 @@
 #define kHarvestItemFailureScore -200
 #define kGameTime 30.0
 #define kWaitAfterGameFinishedDuration 3.0
+#define kTimeStopTime 5.0
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -43,6 +44,8 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @property (nonatomic, strong) NSTimer *gameTimer;
 @property (nonatomic, assign) NSTimeInterval remainTime;
 @property (nonatomic, strong) NSDictionary *harvestedItems;
+@property (nonatomic, assign) BOOL isTimeStop;
+@property (nonatomic, assign) NSTimeInterval remainTimeStopTime;
 
 @end
 
@@ -84,6 +87,8 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 {
     self.score = 0;
     self.remainTime = kGameTime + kTransitionDuration;
+    self.remainTimeStopTime = 0.0;
+    self.isTimeStop = NO;
     self.harvestedItems = [NSMutableDictionary dictionaryWithDictionary:@{
                            @(MKItemIDMushroomAkaKinoko): @(0),
                            @(MKItemIDMushroomHashiraDake): @(0),
@@ -108,13 +113,25 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 
 - (void)tick:(NSTimer *)timer
 {
-    self.remainTime -= MKGameEngineGameTimerInterval;
+    if (self.isTimeStop) {
+        self.remainTimeStopTime -= MKGameEngineGameTimerInterval;
 
-    if (self.remainTime < 0) {
-        [timer invalidate];
-        self.gameTimer = nil;
+        if (self.remainTimeStopTime < 0) {
+            self.isTimeStop = NO;
 
-        [self finishGame];
+            [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationFinishTimeStop
+                                                                object:self];
+        }
+    }
+    else {
+        self.remainTime -= MKGameEngineGameTimerInterval;
+
+        if (self.remainTime < 0) {
+            [timer invalidate];
+            self.gameTimer = nil;
+
+            [self finishGame];
+        }
     }
 }
 
@@ -164,9 +181,16 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 
 - (void)specialItemDidTouch:(NSNotification *)notification
 {
+    if (self.isTimeStop) {
+        return;
+    }
+
     [[NSNotificationCenter defaultCenter] postNotificationName:MKGameEngineNotificationStartTimeStop
                                                         object:self
                                                       userInfo:notification.userInfo];
+
+    self.remainTimeStopTime = kTimeStopTime;
+    self.isTimeStop = YES;
 }
 
 - (void)setScore:(NSInteger)score
