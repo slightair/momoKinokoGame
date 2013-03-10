@@ -8,6 +8,7 @@
 
 #import "MKGameLayer.h"
 #import "MKGameInfoLayer.h"
+#import "MKFreezeEffectLayer.h"
 #import "MKItem.h"
 #import "MKSpecialItem.h"
 #import "MKGameEngine.h"
@@ -15,7 +16,8 @@
 #define kAddItemInterval 0.05
 #define kEmergedAreaHorizontalMarginRate 0.1
 #define kGameInfoLayerZOrder 100
-#define kSpecialItemZOrder 10
+#define kFreezeEffectLayerZOrder 10
+#define kSpecialItemZOrder 20
 
 @interface MKGameLayer ()
 
@@ -23,6 +25,7 @@
 - (void)gameEngineDidFinish:(NSNotification *)notification;
 
 @property (nonatomic, strong) MKGameInfoLayer *infoLayer;
+@property (nonatomic, strong) MKFreezeEffectLayer *freezeEffectLayer;
 
 @end
 
@@ -61,6 +64,9 @@
     self.infoLayer = [MKGameInfoLayer node];
     [self addChild:self.infoLayer z:kGameInfoLayerZOrder];
 
+    self.freezeEffectLayer = [MKFreezeEffectLayer node];
+    [self addChild:self.freezeEffectLayer z:kFreezeEffectLayerZOrder];
+
     [self schedule:@selector(addItem) interval:kAddItemInterval];
 }
 
@@ -68,7 +74,6 @@
 {
     [super onExit];
 
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

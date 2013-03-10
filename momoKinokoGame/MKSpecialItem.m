@@ -13,6 +13,12 @@
 #define kItemScaleUpMax 5.0
 #define kFadeOutDuration 0.5
 
+// Notifications
+NSString *const MKSpecialItemNotificationDidTouchItem = @"MKSpecialItemNotificationDidTouchItem";
+
+// Notification User Info Keys
+NSString *const MKSpecialItemExecutionLocationUserInfoKey = @"MKSpecialItemExecutionLocation";
+
 @implementation MKSpecialItem
 
 + (id)magicalClock
@@ -80,6 +86,10 @@
                  nil];
 
     [self runAction:action];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKSpecialItemNotificationDidTouchItem
+                                                        object:self
+                                                      userInfo:@{MKSpecialItemExecutionLocationUserInfoKey:[NSValue valueWithCGPoint:location]}];
 
     return YES;
 }
