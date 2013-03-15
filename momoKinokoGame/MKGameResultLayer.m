@@ -9,6 +9,7 @@
 #import "MKGameResultLayer.h"
 #import "MKGameEngine.h"
 #import "MKItem.h"
+#import "CCLabelTTF+MKHelper.h"
 
 #define kLabelFontName @"Chalkboard SE"
 #define kLabelFontSize 24
@@ -16,7 +17,6 @@
 
 @interface MKGameResultLayer ()
 
-- (void)addTitleLabel:(NSString *)title position:(CGPoint)position;
 - (void)addItemResult:(MKItemID)itemID count:(NSInteger)count position:(CGPoint)position;
 
 @end
@@ -44,49 +44,32 @@
     [self addChild:background];
 
     MKGameEngine *gameEngine = [MKGameEngine sharedEngine];
-    CGFloat offsetY = windowSize.height / 2 + 150;
+    CGFloat offsetY = windowSize.height / 2 + 130;
     for (NSNumber *itemID in [[gameEngine.harvestedItems allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
         [self addItemResult:[itemID integerValue] count:[gameEngine.harvestedItems[itemID] integerValue] position:ccp(windowSize.width / 2, offsetY)];
         offsetY -= kHarvestedItemLabelInterval;
     }
 
-    NSString *scoreString = [NSString stringWithFormat:@"Score: %d", gameEngine.score];
-    [self addTitleLabel:@"Result" position:ccp(windowSize.width / 2, windowSize.height / 2 + 200)];
-    [self addTitleLabel:scoreString position:ccp(windowSize.width / 2, windowSize.height / 2 - 90)];
-    [self addTitleLabel:@"Retry!!" position:ccp(windowSize.width / 2, windowSize.height / 2 - 160)];
+    CCLabelTTF *resultLabel = [CCLabelTTF labelWithTitle:@"Result" fontName:kLabelFontName fontSize:kLabelFontSize];
+    resultLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 + 180);
+    [self addChild:resultLabel];
 
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-}
+    CCLabelTTF *scoreLabel = [CCLabelTTF labelWithTitle:[NSString stringWithFormat:@"Score: %d", gameEngine.score]
+                                                fontName:kLabelFontName
+                                                fontSize:kLabelFontSize];
+    scoreLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 - 110);
+    [self addChild:scoreLabel];
 
-- (void)onExit
-{
-    [super onExit];
+    CCMenuItem *retryGameItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithTitle:@"Retry!!"
+                                                                                 fontName:kLabelFontName
+                                                                                 fontSize:kLabelFontSize]
+                                                         block:^(id sender){
+                                                             [[MKGameEngine sharedEngine] startNewGame];
+                                                         }];
 
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
-}
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    return YES;
-}
-
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    [[MKGameEngine sharedEngine] startNewGame];
-}
-
-- (void)addTitleLabel:(NSString *)title position:(CGPoint)position
-{
-    CGSize shadowOffset = CGSizeMake(1, -1);
-
-    CCLabelTTF *shadowLabel = [CCLabelTTF labelWithString:title fontName:kLabelFontName fontSize:kLabelFontSize];
-    shadowLabel.position = ccp(position.x + shadowOffset.width, position.y + shadowOffset.height);
-    shadowLabel.color = ccc3(0, 0, 0);
-    [self addChild:shadowLabel];
-
-    CCLabelTTF *label = [CCLabelTTF labelWithString:title fontName:kLabelFontName fontSize:kLabelFontSize];
-    label.position = position;
-    [self addChild:label];
+    CCMenu *menu = [CCMenu menuWithArray:@[retryGameItem]];
+    menu.position = ccp(windowSize.width / 2, windowSize.height / 2 - 160);
+    [self addChild:menu];
 }
 
 - (void)addItemResult:(MKItemID)itemID count:(NSInteger)count position:(CGPoint)position

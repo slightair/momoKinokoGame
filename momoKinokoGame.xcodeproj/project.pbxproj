@@ -20,6 +20,7 @@
 		575E062216ECCD910036FE41 /* peach3.png in Resources */ = {isa = PBXBuildFile; fileRef = 575E061E16ECCD910036FE41 /* peach3.png */; };
 		575E062816EEAC7B0036FE41 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575E062716EEAC7B0036FE41 /* GameKit.framework */; };
 		575E063516F3449B0036FE41 /* MKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 575E063416F3449A0036FE41 /* MKMainViewController.m */; };
+		575E063816F35CA10036FE41 /* CCLabelTTF+MKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 575E063716F35CA00036FE41 /* CCLabelTTF+MKHelper.m */; };
 		577E252D16E308D2005A95AA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E252C16E308D2005A95AA /* background.png */; };
 		577E253016E37EAE005A95AA /* MKGameResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 577E252F16E37EAE005A95AA /* MKGameResultLayer.m */; };
 		577E253216E40789005A95AA /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 577E253116E40789005A95AA /* background-hd.png */; };
@@ -95,6 +96,8 @@
 		575E062716EEAC7B0036FE41 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		575E063316F3449A0036FE41 /* MKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMainViewController.h; sourceTree = "<group>"; };
 		575E063416F3449A0036FE41 /* MKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMainViewController.m; sourceTree = "<group>"; };
+		575E063616F35CA00036FE41 /* CCLabelTTF+MKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCLabelTTF+MKHelper.h"; sourceTree = "<group>"; };
+		575E063716F35CA00036FE41 /* CCLabelTTF+MKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLabelTTF+MKHelper.m"; sourceTree = "<group>"; };
 		577E252C16E308D2005A95AA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Images/background.png; sourceTree = "<group>"; };
 		577E252E16E37EAE005A95AA /* MKGameResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGameResultLayer.h; sourceTree = "<group>"; };
 		577E252F16E37EAE005A95AA /* MKGameResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGameResultLayer.m; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 				577E252F16E37EAE005A95AA /* MKGameResultLayer.m */,
 				575E061016E6C2650036FE41 /* MKFreezeEffectLayer.h */,
 				575E061116E6C2650036FE41 /* MKFreezeEffectLayer.m */,
+				575E063616F35CA00036FE41 /* CCLabelTTF+MKHelper.h */,
+				575E063716F35CA00036FE41 /* CCLabelTTF+MKHelper.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				575E060C16E571520036FE41 /* MKSpecialItem.m in Sources */,
 				575E061216E6C2650036FE41 /* MKFreezeEffectLayer.m in Sources */,
 				575E063516F3449B0036FE41 /* MKMainViewController.m in Sources */,
+				575E063816F35CA10036FE41 /* CCLabelTTF+MKHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
