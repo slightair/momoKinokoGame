@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface MKMainViewController : UINavigationController
+@interface MKMainViewController : UINavigationController <GKLeaderboardViewControllerDelegate>
+
+- (void)showLeaderboard;
 
 @end

@@ -14,15 +14,6 @@
 
 @implementation MKMainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,6 +24,23 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showLeaderboard
+{
+    GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+    leaderboardViewController.leaderboardDelegate = self;
+    [self presentViewController:leaderboardViewController
+                       animated:YES
+                     completion:NULL];
+}
+
+#pragma mark -
+#pragma mark GKLeaderboardViewControllerDelegate methods
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
