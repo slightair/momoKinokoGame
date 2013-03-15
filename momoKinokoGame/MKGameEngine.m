@@ -67,6 +67,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 {
     self = [super init];
     if (self) {
+        self.enableGameCenter = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(itemDidReachHarvestArea:)
                                                      name:MKItemNotificationReachedItem

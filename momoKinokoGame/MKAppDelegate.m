@@ -7,7 +7,9 @@
 //
 
 #import "MKAppDelegate.h"
+#import <GameKit/GameKit.h>
 #import "MKIntroLayer.h"
+#import "MKGameEngine.h"
 
 #ifdef TESTFLIGHT
 #import <TestFlight.h>
@@ -17,7 +19,7 @@
 @interface MKAppDelegate ()
 
 @property (nonatomic, weak) CCDirectorIOS *director;
-@property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong) MKMainViewController *mainViewController;
 
 @end
 
@@ -25,7 +27,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
 #ifdef TESTFLIGHT
     [TestFlight takeOff:kTestFlightToken];
 #endif
@@ -62,39 +63,55 @@
 
     [self.director pushScene:[MKIntroLayer scene]];
 
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.director];
-    self.navigationController.navigationBarHidden = YES;
+    self.mainViewController = [[MKMainViewController alloc] initWithRootViewController:self.director];
+    self.mainViewController.navigationBarHidden = YES;
 
-    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
+
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    __weak GKLocalPlayer *player = localPlayer;
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+        if (viewController) {
+            [self.window.rootViewController presentViewController:viewController
+                                                         animated:YES
+                                                       completion:NULL];
+        }
+        else if (player.authenticated) {
+            [[MKGameEngine sharedEngine] setEnableGameCenter:YES];
+        }
+        else {
+            [[MKGameEngine sharedEngine] setEnableGameCenter:NO];
+        }
+    };
 
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    if (self.navigationController.visibleViewController == self.director) {
+    if (self.mainViewController.visibleViewController == self.director) {
         [self.director pause];
     }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    if (self.navigationController.visibleViewController == self.director) {
+    if (self.mainViewController.visibleViewController == self.director) {
         [self.director stopAnimation];
     }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    if (self.navigationController.visibleViewController == self.director) {
+    if (self.mainViewController.visibleViewController == self.director) {
         [self.director startAnimation];
     }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    if (self.navigationController.visibleViewController == self.director) {
+    if (self.mainViewController.visibleViewController == self.director) {
         [self.director resume];
     }
 }

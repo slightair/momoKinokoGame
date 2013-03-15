@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <cocos2d.h>
+#import "MKMainViewController.h"
 
 @interface MKAppDelegate : UIResponder <UIApplicationDelegate, CCDirectorDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong, readonly) MKMainViewController *mainViewController;
 
 @end
