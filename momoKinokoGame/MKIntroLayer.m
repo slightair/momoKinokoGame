@@ -55,11 +55,9 @@
                                                            }];
     CCMenuItem *showRankingItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithTitle:@"Ranking" fontName:kMenuItemFontName fontSize:kLabelFontSize]
                                                              block:^(id sender){
-                                                                 if ([[MKGameEngine sharedEngine] enableGameCenter]) {
-                                                                     MKAppDelegate *appDelegate = (MKAppDelegate *)[UIApplication sharedApplication].delegate;
-                                                                     MKMainViewController *mainViewController = appDelegate.mainViewController;
-                                                                     [mainViewController showLeaderboard];
-                                                                 }
+                                                                 MKAppDelegate *appDelegate = (MKAppDelegate *)[UIApplication sharedApplication].delegate;
+                                                                 MKMainViewController *mainViewController = appDelegate.mainViewController;
+                                                                 [mainViewController showLeaderboard];
                                                              }];
 
     CCMenu *menu = [CCMenu menuWithArray:@[startGameItem, showRankingItem]];
