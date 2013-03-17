@@ -8,6 +8,7 @@
 
 #import "MKGameEngine.h"
 #import <cocos2d.h>
+#import "MKIntroLayer.h"
 #import "MKGameLayer.h"
 #import "MKGameResultLayer.h"
 #import "MKItem.h"
@@ -120,6 +121,12 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
                                                     selector:@selector(tick:)
                                                     userInfo:nil
                                                      repeats:YES];
+}
+
+- (void)showTitle
+{
+    id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKIntroLayer scene]];
+    [[CCDirector sharedDirector] replaceScene:transition];
 }
 
 - (void)tick:(NSTimer *)timer

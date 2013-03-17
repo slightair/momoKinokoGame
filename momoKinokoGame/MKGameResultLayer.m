@@ -11,6 +11,7 @@
 #import "MKItem.h"
 #import "CCLabelTTF+MKHelper.h"
 
+#define kMenuItemVerticalPadding 24
 #define kLabelFontName @"Chalkboard SE"
 #define kLabelFontSize 24
 #define kHarvestedItemLabelInterval 28
@@ -44,20 +45,20 @@
     [self addChild:background];
 
     MKGameEngine *gameEngine = [MKGameEngine sharedEngine];
-    CGFloat offsetY = windowSize.height / 2 + 130;
+    CGFloat offsetY = windowSize.height / 2 + 154;
     for (NSNumber *itemID in [[gameEngine.harvestedItems allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
         [self addItemResult:[itemID integerValue] count:[gameEngine.harvestedItems[itemID] integerValue] position:ccp(windowSize.width / 2, offsetY)];
         offsetY -= kHarvestedItemLabelInterval;
     }
 
     CCLabelTTF *resultLabel = [CCLabelTTF labelWithTitle:@"Result" fontName:kLabelFontName fontSize:kLabelFontSize];
-    resultLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 + 180);
+    resultLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 + 190);
     [self addChild:resultLabel];
 
     CCLabelTTF *scoreLabel = [CCLabelTTF labelWithTitle:[NSString stringWithFormat:@"Score: %d", gameEngine.score]
                                                 fontName:kLabelFontName
                                                 fontSize:kLabelFontSize];
-    scoreLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 - 110);
+    scoreLabel.position = ccp(windowSize.width / 2, windowSize.height / 2 - 80);
     [self addChild:scoreLabel];
 
     CCMenuItem *retryGameItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithTitle:@"Retry!!"
@@ -67,7 +68,15 @@
                                                              [[MKGameEngine sharedEngine] startNewGame];
                                                          }];
 
-    CCMenu *menu = [CCMenu menuWithArray:@[retryGameItem]];
+    CCMenuItem *showTitleItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithTitle:@"Return Title"
+                                                                                 fontName:kLabelFontName
+                                                                                 fontSize:kLabelFontSize]
+                                                         block:^(id sender){
+                                                             [[MKGameEngine sharedEngine] showTitle];
+                                                         }];
+
+    CCMenu *menu = [CCMenu menuWithArray:@[retryGameItem, showTitleItem]];
+    [menu alignItemsVerticallyWithPadding:kMenuItemVerticalPadding];
     menu.position = ccp(windowSize.width / 2, windowSize.height / 2 - 160);
     [self addChild:menu];
 }

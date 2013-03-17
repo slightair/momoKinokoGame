@@ -64,7 +64,7 @@
 
     CCMenu *menu = [CCMenu menuWithArray:@[startGameItem, showRankingItem]];
     [menu alignItemsVerticallyWithPadding:kMenuItemVerticalPadding];
-    menu.position = ccp(windowSize.width / 2, windowSize.height / 2 - 140);
+    menu.position = ccp(windowSize.width / 2, windowSize.height / 2 - 160);
     [self addChild:menu];
 }
 
