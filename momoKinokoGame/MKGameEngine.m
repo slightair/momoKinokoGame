@@ -25,6 +25,8 @@
 
 #define kLeaderboardIDHighScores @"momoKinokoGame.highScore"
 #define kLeaderboardIDLowScores @"momoKinokoGame.lowScore"
+#define kLeaderboardIDMushroomMania @"momoKinokoGame.mushroomMania"
+#define kLeaderboardIDPeachMania @"momoKinokoGame.peachMania"
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -224,6 +226,26 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
     GKScore *lowScore = [[GKScore alloc] initWithCategory:kLeaderboardIDLowScores];
     lowScore.value = self.score;
     [self.player submitScore:lowScore];
+
+    NSInteger mushroomPoint = 0;
+    NSInteger peachPoint = 0;
+    for (NSNumber *itemID in self.harvestedItems) {
+        NSInteger point = [self.harvestedItems[itemID] integerValue];
+        if ([itemID integerValue] >= MKItemIDPeachBamiyan) {
+            peachPoint += point;
+        }
+        else if ([itemID integerValue] >= MKItemIDMushroomAkaKinoko) {
+            mushroomPoint += point;
+        }
+    }
+
+    GKScore *mushroomScore = [[GKScore alloc] initWithCategory:kLeaderboardIDMushroomMania];
+    mushroomScore.value = mushroomPoint;
+    [self.player submitScore:mushroomScore];
+
+    GKScore *peachScore = [[GKScore alloc] initWithCategory:kLeaderboardIDPeachMania];
+    peachScore.value = peachPoint;
+    [self.player submitScore:peachScore];
 }
 
 - (void)setScore:(NSInteger)score
