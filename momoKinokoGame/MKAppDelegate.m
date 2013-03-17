@@ -79,6 +79,7 @@
         }
         else if (player.authenticated) {
             [[MKGameEngine sharedEngine] setEnableGameCenter:YES];
+            [[MKGameEngine sharedEngine] setCurrentPlayerID:player.playerID];
         }
         else {
             [[MKGameEngine sharedEngine] setEnableGameCenter:NO];

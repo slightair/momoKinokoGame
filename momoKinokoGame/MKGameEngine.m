@@ -12,6 +12,7 @@
 #import "MKGameResultLayer.h"
 #import "MKItem.h"
 #import "MKSpecialItem.h"
+#import "MKPlayer.h"
 
 #define kTransitionDuration 1.0
 #define kHarvestItemSuccessScore 100
@@ -20,6 +21,9 @@
 #define kWaitAfterGameFinishedDuration 3.0
 #define kTimeStopTime 5.0
 #define kSpecialItemSupplyScoreInterval 1000
+
+#define kLeaderboardIDHighScores @"momoKinokoGame.highScore"
+#define kLeaderboardIDLowScores @"momoKinokoGame.lowScore"
 
 // Notifications
 NSString *const MKGameEngineNotificationUpdateScore = @"MKGameEngineNotificationUpdateScore";
@@ -40,6 +44,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 - (void)specialItemDidTouch:(NSNotification *)notification;
 - (void)tick:(NSTimer *)timer;
 - (void)finishGame;
+- (void)submitScore;
 
 @property (nonatomic, assign) NSInteger score;
 @property (nonatomic, strong) NSTimer *gameTimer;
@@ -48,6 +53,7 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
 @property (nonatomic, assign) BOOL isTimeStop;
 @property (nonatomic, assign) NSTimeInterval remainTimeStopTime;
 @property (nonatomic, assign) BOOL specialItemCount;
+@property (nonatomic, strong) MKPlayer *player;
 
 @end
 
@@ -148,6 +154,10 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
     double delayInSeconds = kWaitAfterGameFinishedDuration;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (self.enableGameCenter) {
+            [self submitScore];
+        }
+
         id transition = [CCTransitionFade transitionWithDuration:kTransitionDuration scene:[MKGameResultLayer scene]];
         [[CCDirector sharedDirector] replaceScene:transition];
     });
@@ -198,6 +208,17 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
     self.isTimeStop = YES;
 }
 
+- (void)submitScore
+{
+    GKScore *highScore = [[GKScore alloc] initWithCategory:kLeaderboardIDHighScores];
+    highScore.value = self.score;
+    [self.player submitScore:highScore];
+
+    GKScore *lowScore = [[GKScore alloc] initWithCategory:kLeaderboardIDLowScores];
+    lowScore.value = self.score;
+    [self.player submitScore:lowScore];
+}
+
 - (void)setScore:(NSInteger)score
 {
     _score = score;
@@ -211,6 +232,19 @@ NSString *const MKGameEngineItemReachedLocationUserInfoKey = @"MKGameEngineItemR
                                                             object:self];
         self.specialItemCount++;
     }
+}
+
+- (void)setCurrentPlayerID:(NSString *)currentPlayerID
+{
+    if ([_currentPlayerID isEqualToString:currentPlayerID]) {
+        return;
+    }
+
+    _currentPlayerID = currentPlayerID;
+
+    self.player = [[MKPlayer alloc] init];
+    [self.player loadStoredScores];
+    [self.player resubmitStoredScores];
 }
 
 @end

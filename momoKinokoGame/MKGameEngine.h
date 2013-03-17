@@ -33,5 +33,6 @@ extern NSString *const MKGameEngineItemReachedLocationUserInfoKey;
 @property (nonatomic, assign, readonly) NSTimeInterval remainTimeStopTime;
 @property (nonatomic, strong, readonly) NSDictionary *harvestedItems;
 @property (nonatomic, assign) BOOL enableGameCenter;
+@property (nonatomic, strong) NSString *currentPlayerID;
 
 @end
