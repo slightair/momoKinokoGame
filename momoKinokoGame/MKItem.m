@@ -34,6 +34,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 @property (nonatomic, assign) CGPoint prevLocation;
 @property (nonatomic, assign) CFAbsoluteTime prevTime;
 @property (nonatomic, strong) CCAction *flipAction;
+@property (nonatomic, assign) BOOL isFlipActionFired;
 @property (nonatomic, assign) BOOL isFrozen;
 
 @end
@@ -46,6 +47,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
     MKItem *item = [MKItem spriteWithFile:imageFileName];
     item.itemID = itemID;
     item.flipAction = nil;
+    item.isFlipActionFired = NO;
     item.isFrozen = NO;
 
     return item;
@@ -220,6 +222,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
     if (self.flipAction) {
         [self runAction:self.flipAction];
+        self.isFlipActionFired = YES;
+        self.flipAction = nil;
     }
     else {
         [self resumeSchedulerAndActions];
@@ -228,7 +232,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (self.flipAction) {
+    if (self.flipAction || self.isFlipActionFired) {
         return NO;
     }
 
@@ -254,7 +258,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (self.flipAction) {
+    if (self.flipAction || self.isFlipActionFired) {
         return;
     }
 
@@ -273,6 +277,8 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
             [self flipFrom:self.prevLocation to:location deltaTime:deltaTime];
             if (!self.isFrozen) {
                 [self runAction:self.flipAction];
+                self.isFlipActionFired = YES;
+                self.flipAction = nil;
             }
         }
         else {
@@ -287,7 +293,7 @@ NSString *const MKItemReachedLocationUserInfoKey = @"MKItemReachedLocation";
 {
     self.prevLocation = CGPointZero;
 
-    if (!self.flipAction) {
+    if (!self.flipAction && !self.isFlipActionFired) {
         id action = [CCSequence actions:
                      [CCFadeOut actionWithDuration:kFadeOutDuration],
                      [CCCallFuncND actionWithTarget:self selector:@selector(removeFromParentAndCleanup:) data:(void *)YES],
